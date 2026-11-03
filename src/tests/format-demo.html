@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Format demo website
+    </title>
+    <script type="module">
+        import "../../src/janus/ui/BaseTheme.js";
+
+        const params = new URLSearchParams(location.search);
+        const variant = params.get("variant") === "spaced"
+        ? "spaced"
+        : "compact";
+        document.title = `Format demo (${variant})`;
+        const module = await import(`./fixtures/format-demo-website.${variant}.js`);
+        const Demo = module.default;
+        const host = document.createElement("janus-format-demo-site");
+        host.accent = "accent";
+        document.body.append(host);
+        window.__FORMAT_DEMO__ = {
+        variant,
+        Demo,
+        };
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
