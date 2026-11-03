@@ -1,0 +1,23 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-home"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-home .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-home{0%,100%{transform:scale(1)}18%{transform:scale(1.18)}}
+      .janus-i-home .m{animation:janus-home .65s infinite}
+
+  </style>
+  <g class="m">
+    <path d="M4.5 10.5L12 4.5l7.5 6" />
+    <path d="M7 10v8.5h10V10" />
+    <path d="M10 18.5v-5h4v5" />
+  </g>
+</svg>

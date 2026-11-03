@@ -1,0 +1,29 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-link"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-link .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-link-a{0%,100%{transform:translate(0,0)}35%{transform:translate(2.4px,-2.4px)}}
+      @keyframes janus-link-b{0%,100%{transform:translate(0,0)}35%{transform:translate(-2.4px,2.4px)}}
+      .janus-i-link .a{animation:janus-link-a .7s ease-in-out infinite}
+      .janus-i-link .b{animation:janus-link-b .7s ease-in-out infinite}
+
+  </style>
+  <path d="M9.5 14.5 14.5 9.5" />
+  <path
+    class="m a"
+    d="M11 7.5l1.2-1.2a3.5 3.5 0 0 1 5 5L16 12.5"
+  />
+  <path
+    class="m b"
+    d="M13 16.5l-1.2 1.2a3.5 3.5 0 0 1-5-5L8 11.5"
+  />
+</svg>

@@ -1,0 +1,22 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-close"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-close .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-close{0%,100%{transform:scale(1)}16%{transform:scale(1.28)}}
+      .janus-i-close .m{animation:janus-close .6s infinite}
+
+  </style>
+  <g class="m">
+    <path d="M6 6l12 12" />
+    <path d="M18 6L6 18" />
+  </g>
+</svg>

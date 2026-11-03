@@ -1,0 +1,33 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-image"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-image .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-image{0%,100%{transform:scale(1)}16%{transform:scale(1.2)}}
+      .janus-i-image .m{animation:janus-image .65s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <rect
+      x="4"
+      y="5.5"
+      width="16"
+      height="13"
+      rx="1.5"
+    />
+    <circle
+      cx="9"
+      cy="10"
+      r="1.4"
+    />
+    <path d="M4.8 16.5 9.5 12l3 2.5 2.2-1.8 4.5 3.8" />
+  </g>
+</svg>

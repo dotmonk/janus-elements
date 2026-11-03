@@ -1,0 +1,25 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-export"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-export .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-export{0%,100%{transform:translate(0,0)}40%{transform:translate(3px,-3px)}70%{transform:translate(1.2px,-1.2px)}}
+      .janus-i-export .m{animation:janus-export .65s ease-in-out infinite}
+
+  </style>
+  <path
+    d="M10.5 5.5H6.5A2 2 0 0 0 4.5 7.5v9A2 2 0 0 0 6.5 18.5h9a2 2 0 0 0 2-2V12.5"
+  />
+  <g class="m">
+    <path d="M12.5 11.5 19.5 4.5" />
+    <path d="M14.2 4.5H19.5V9.8" />
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-settings"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-settings .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-settings{to{transform:rotate(360deg)}}
+      .janus-i-settings .m{transform-box:fill-box;transform-origin:center;animation:janus-settings 4s linear infinite}
+
+  </style>
+  <path
+    class="m"
+    d="M10.47 6.82 L10.92 4.68 L13.08 4.68 L13.53 6.82 L15.72 8.08 L17.80 7.40 L18.88 9.28 L17.25 10.74 L17.25 13.26 L18.88 14.72 L17.80 16.60 L15.72 15.92 L13.53 17.18 L13.08 19.32 L10.92 19.32 L10.47 17.18 L8.28 15.92 L6.20 16.60 L5.12 14.72 L6.75 13.26 L6.75 10.74 L5.12 9.28 L6.20 7.40 L8.28 8.08 Z"
+  />
+</svg>

@@ -1,0 +1,36 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-day-night"
+  aria-hidden="true"
+>
+  <circle
+    cx="12"
+    cy="12"
+    r="8"
+  />
+  <path
+    fill="currentColor"
+    stroke="none"
+    d="M12 4a8 8 0 0 1 0 16Z"
+  >
+    <!-- SMIL, not CSS d: WebKit cannot animate the CSS d property -->
+    <animate
+      attributeName="d"
+      dur="1.5s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keyTimes="0;0.5;1"
+      keySplines="0.42 0 0.58 1;0.42 0 0.58 1"
+      values="
+      M12 4C7.582 4 4 7.582 4 12C4 16.418 7.582 20 12 20C7.582 20 4 16.418 4 12C4 7.582 7.582 4 12 4Z;
+      M12 4C7.582 4 4 7.582 4 12C4 16.418 7.582 20 12 20C16.418 20 20 16.418 20 12C20 7.582 16.418 4 12 4Z;
+      M12 4C16.418 4 20 7.582 20 12C20 16.418 16.418 20 12 20C16.418 20 20 16.418 20 12C20 7.582 16.418 4 12 4Z"
+    />
+  </path>
+</svg>

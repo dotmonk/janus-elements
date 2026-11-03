@@ -1,0 +1,31 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-clock"
+  aria-hidden="true"
+>
+  <style>
+      @keyframes janus-clock{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+      .janus-i-clock .minute,.janus-i-clock .hour{transform-origin:12px 12px;transform-box:view-box;animation:janus-clock 1.4s linear infinite}
+      .janus-i-clock .hour{animation-duration:16.8s}
+
+  </style>
+  <circle
+    cx="12"
+    cy="12"
+    r="8"
+  />
+  <path
+    class="hour"
+    d="M12 12l2.8 1.7"
+  />
+  <path
+    class="minute"
+    d="M12 12V7.2"
+  />
+</svg>

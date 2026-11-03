@@ -1,0 +1,23 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-download"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-download .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-download{0%,100%{transform:translateY(0)}40%{transform:translateY(3px)}70%{transform:translateY(1px)}}
+      .janus-i-download .m{animation:janus-download .65s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <path d="M12 4.5v10" />
+    <path d="M8.2 11.2 12 15l3.8-3.8" />
+    <path d="M5 19h14" />
+  </g>
+</svg>

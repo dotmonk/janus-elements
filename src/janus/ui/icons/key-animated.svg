@@ -1,0 +1,26 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-key"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-key .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-key{0%,100%{transform:rotate(0deg)}15%{transform:rotate(-12deg)}35%{transform:rotate(10deg)}55%{transform:rotate(-5deg)}}
+      .janus-i-key .m{transform-origin:8.5px 12px;transform-box:view-box;animation:janus-key .7s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <circle
+      cx="8.5"
+      cy="12"
+      r="3.2"
+    />
+    <path d="M11.5 12h8.2M16.2 12v2.4M18.5 12v2.4" />
+  </g>
+</svg>

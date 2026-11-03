@@ -1,0 +1,28 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-calendar"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-calendar .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-calendar{0%,100%{transform:translateY(0)}20%{transform:translateY(-2.5px)}45%{transform:translateY(0)}65%{transform:translateY(-1.2px)}}
+      .janus-i-calendar .m{animation:janus-calendar .7s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <rect
+      x="4"
+      y="6"
+      width="16"
+      height="14"
+      rx="1.5"
+    />
+    <path d="M8 4.5v3M16 4.5v3M4 10h16" />
+  </g>
+</svg>

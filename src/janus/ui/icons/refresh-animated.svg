@@ -1,0 +1,22 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-refresh"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-refresh .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-refresh{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+      .janus-i-refresh .m{transform-origin:12px 12px;transform-box:view-box;animation:janus-refresh 1s linear infinite}
+
+  </style>
+  <g class="m">
+    <path d="M19 12a7 7 0 1 1-2-4.9" />
+    <path d="M19 5v5h-5" />
+  </g>
+</svg>

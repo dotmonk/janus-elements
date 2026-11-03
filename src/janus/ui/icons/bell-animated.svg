@@ -1,0 +1,24 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-bell"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-bell .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-bell{0%,100%{transform:rotate(0)}20%{transform:rotate(14deg)}40%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}80%{transform:rotate(-4deg)}}
+      .janus-i-bell .m{transform-origin:12px 8px;transform-box:view-box;animation:janus-bell .7s infinite}
+
+  </style>
+  <g class="m">
+    <path d="M6.5 16.5h11" />
+    <path d="M7.2 16.5V11a4.8 4.8 0 0 1 9.6 0v5.5" />
+    <path d="M10.2 16.5a1.8 1.8 0 0 0 3.6 0" />
+    <path d="M12 4.2v1.2" />
+  </g>
+</svg>

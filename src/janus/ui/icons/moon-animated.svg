@@ -1,0 +1,23 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-moon"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-moon .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-moon{0%,100%{transform:rotate(0deg) translateY(0)}25%{transform:rotate(-20deg) translateY(-2px)}55%{transform:rotate(12deg) translateY(-1px)}80%{transform:rotate(-4deg) translateY(0)}}
+      .janus-i-moon .m{transform-origin:12px 12px;transform-box:view-box;animation:janus-moon 1.2s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <path
+      d="M19.2 14.1A7.2 7.2 0 0 1 9.9 4.8 7.5 7.5 0 1 0 19.2 14.1z"
+    />
+  </g>
+</svg>

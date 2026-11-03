@@ -1,0 +1,33 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-menu"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-menu .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-menu{0%,100%{transform:scaleX(1)}20%{transform:scaleX(.55)}}
+      .janus-i-menu .m{transform-box:fill-box;transform-origin:center}
+      .janus-i-menu .m1{animation:janus-menu .7s infinite}
+      .janus-i-menu .m2{animation:janus-menu .7s .08s infinite}
+      .janus-i-menu .m3{animation:janus-menu .7s .16s infinite}
+
+  </style>
+  <path
+    class="m m1"
+    d="M4.5 7h15"
+  />
+  <path
+    class="m m2"
+    d="M4.5 12h15"
+  />
+  <path
+    class="m m3"
+    d="M4.5 17h15"
+  />
+</svg>

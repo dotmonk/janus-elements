@@ -1,0 +1,28 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-sun"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-sun .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-sun{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(22.5deg) scale(1.22)}100%{transform:rotate(45deg) scale(1)}}
+      .janus-i-sun .m{transform-origin:12px 12px;transform-box:view-box;animation:janus-sun 1s linear infinite}
+
+  </style>
+  <circle
+    cx="12"
+    cy="12"
+    r="3.6"
+  />
+  <g class="m">
+    <path
+      d="M12 3.2v2.2M12 18.6v2.2M3.2 12h2.2M18.6 12h2.2M5.9 5.9l1.55 1.55M16.55 16.55l1.55 1.55M5.9 18.1l1.55-1.55M16.55 7.45l1.55-1.55"
+    />
+  </g>
+</svg>

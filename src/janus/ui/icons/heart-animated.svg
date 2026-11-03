@@ -1,0 +1,23 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-heart"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-heart .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-heart{0%,100%{transform:scale(1)}12%{transform:scale(1.28)}28%{transform:scale(1)}40%{transform:scale(1.16)}}
+      .janus-i-heart .m{animation:janus-heart .75s infinite}
+
+  </style>
+  <g class="m">
+    <path
+      d="M12 19.2S4.8 14.2 4.8 9.6A3.9 3.9 0 0 1 12 7.4a3.9 3.9 0 0 1 7.2 2.2c0 4.6-7.2 9.6-7.2 9.6z"
+    />
+  </g>
+</svg>

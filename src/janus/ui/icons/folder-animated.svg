@@ -1,0 +1,23 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-folder"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-folder .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-folder{0%,100%{transform:scaleY(1) translateY(0)}35%{transform:scaleY(.86) translateY(1.2px)}}
+      .janus-i-folder .m{transform-origin:center bottom;animation:janus-folder .65s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <path
+      d="M3.5 8.5V18a1.5 1.5 0 0 0 1.5 1.5h14A1.5 1.5 0 0 0 20.5 18V10A1.5 1.5 0 0 0 19 8.5h-7.2L9.5 6H5A1.5 1.5 0 0 0 3.5 7.5z"
+    />
+  </g>
+</svg>

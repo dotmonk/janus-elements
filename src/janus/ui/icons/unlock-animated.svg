@@ -1,0 +1,29 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-unlock"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-unlock .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-unlock{0%,100%{transform:rotate(0deg)}15%{transform:rotate(-10deg)}35%{transform:rotate(8deg)}55%{transform:rotate(-4deg)}}
+      .janus-i-unlock .m{transform-origin:12px 14px;transform-box:view-box;animation:janus-unlock .7s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <rect
+      x="6"
+      y="10.5"
+      width="12"
+      height="9"
+      rx="1.5"
+    />
+    <path d="M8.5 10.5V8.2a3.5 3.5 0 0 1 6.8-1.1" />
+    <path d="M12 13.5v2.5" />
+  </g>
+</svg>

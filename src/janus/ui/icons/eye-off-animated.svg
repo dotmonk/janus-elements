@@ -1,0 +1,28 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-eye-off"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-eye-off .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-eye-off{0%,100%{transform:scale(1);opacity:1}40%{transform:scale(.88);opacity:.35}70%{transform:scale(1.08);opacity:1}}
+      .janus-i-eye-off .m{animation:janus-eye-off .75s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <path d="M3 3l18 18" />
+    <path d="M10.4 10.5a2.6 2.6 0 0 0 3.2 3.2" />
+    <path
+      d="M7 7.4C4.6 8.8 2.8 12 2.8 12s3.4 5.5 9.2 5.5c1.3 0 2.5-.3 3.5-.7"
+    />
+    <path
+      d="M14.2 7.1A9.4 9.4 0 0 1 12 6.5c-5.8 0-9.2 5.5-9.2 5.5a14 14 0 0 0 2.1 2.6"
+    />
+  </g>
+</svg>

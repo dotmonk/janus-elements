@@ -1,0 +1,22 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-chevron"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-chevron .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-chevron{0%,100%{transform:translateY(0)}22%{transform:translateY(3.5px)}}
+      .janus-i-chevron .m{animation:janus-chevron .6s infinite}
+
+  </style>
+  <path
+    class="m"
+    d="M7 10l5 5 5-5"
+  />
+</svg>

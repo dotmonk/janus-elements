@@ -1,0 +1,27 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-eye"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-eye .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-eye{0%,100%{transform:translateX(0)}20%{transform:translateX(2.5px)}45%{transform:translateX(0)}70%{transform:translateX(-2.5px)}}
+      .janus-i-eye .m{transform-box:fill-box;transform-origin:center;animation:janus-eye .85s infinite}
+
+  </style>
+  <path
+    d="M2.8 12s3.4-5.5 9.2-5.5S21.2 12 21.2 12s-3.4 5.5-9.2 5.5S2.8 12 2.8 12z"
+  />
+  <circle
+    class="m"
+    cx="12"
+    cy="12"
+    r="2.6"
+  />
+</svg>

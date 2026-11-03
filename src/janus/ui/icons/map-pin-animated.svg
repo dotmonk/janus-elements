@@ -1,0 +1,26 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-map-pin"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-map-pin .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-map-pin{0%,100%{transform:translateY(0) scale(1)}25%{transform:translateY(-2.8px) scale(1.08)}50%{transform:translateY(0) scale(1)}70%{transform:translateY(-1.4px) scale(1.04)}}
+      .janus-i-map-pin .m{transform-origin:center bottom;animation:janus-map-pin .7s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <path d="M12 20.5s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z" />
+    <circle
+      cx="12"
+      cy="10.5"
+      r="2"
+    />
+  </g>
+</svg>

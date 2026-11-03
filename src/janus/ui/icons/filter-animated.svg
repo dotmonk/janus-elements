@@ -1,0 +1,21 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-filter"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-filter .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-filter{0%,100%{transform:scaleY(1)}35%{transform:scaleY(.78)}}
+      .janus-i-filter .m{transform-origin:center top;animation:janus-filter .65s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <path d="M4.5 6h15l-5.5 6.5V18l-4 2v-7.5z" />
+  </g>
+</svg>

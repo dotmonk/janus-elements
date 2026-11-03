@@ -1,0 +1,30 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="janus-i-copy"
+  aria-hidden="true"
+>
+  <style>
+      .janus-i-copy .m{transform-box:fill-box;transform-origin:center}
+      @keyframes janus-copy{0%,100%{transform:translate(0,0)}18%{transform:translate(2.2px,-2.2px)}40%{transform:translate(-.6px,.6px)}}
+      .janus-i-copy .m{animation:janus-copy .7s ease-in-out infinite}
+
+  </style>
+  <g class="m">
+    <rect
+      x="8.5"
+      y="8.5"
+      width="10"
+      height="12"
+      rx="1.5"
+    />
+    <path
+      d="M15.5 8.5V6A1.5 1.5 0 0 0 14 4.5H6A1.5 1.5 0 0 0 4.5 6v10A1.5 1.5 0 0 0 6 17.5h2.5"
+    />
+  </g>
+</svg>
