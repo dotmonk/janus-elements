@@ -1,0 +1,50 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  role="img"
+  aria-label="Janus Elements"
+>
+  <style>
+      .janus-logo-warm { fill: var(--janus-accent, #e3b04b); }
+      .janus-logo-cool { fill: var(--janus-text, #e7ebef); }
+      @media (prefers-color-scheme: light) {
+      .janus-logo-warm { fill: var(--janus-accent, #7c5308); }
+      .janus-logo-cool { fill: var(--janus-text, #151b22); }
+      }
+
+  </style>
+  <defs>
+    <clippath id="janus-logo-clip-warm">
+      <rect
+        x="0"
+        y="0"
+        width="31"
+        height="64"
+      />
+    </clippath>
+    <clippath id="janus-logo-clip-cool">
+      <rect
+        x="33"
+        y="0"
+        width="31"
+        height="64"
+      />
+    </clippath>
+  </defs>
+  <path
+    class="janus-logo-warm"
+    fill-rule="evenodd"
+    clip-path="url(#janus-logo-clip-warm)"
+    d="M32 4C17.6 4 8 14.6 8 28.5C8 44.5 18.5 57.5 32 60L32 4Z
+      M14.5 27.5Q21 21.5 27.5 27.5Q21 32 14.5 27.5Z
+      M18.5 40Q32 50 45.5 40Q32 54 18.5 40Z"
+  />
+  <path
+    class="janus-logo-cool"
+    fill-rule="evenodd"
+    clip-path="url(#janus-logo-clip-cool)"
+    d="M32 4C46.4 4 56 14.6 56 28.5C56 44.5 45.5 57.5 32 60L32 4Z
+      M36.5 27.5Q43 21.5 49.5 27.5Q43 32 36.5 27.5Z
+      M18.5 40Q32 50 45.5 40Q32 54 18.5 40Z"
+  />
+</svg>
