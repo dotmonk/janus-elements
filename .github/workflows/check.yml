@@ -1,0 +1,23 @@
+name: Check
+
+on:
+  push:
+    branches:
+      - patriarch
+      - main
+      - master
+  pull_request:
+    branches:
+      - patriarch
+      - main
+      - master
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run check.sh
+        run: ./check.sh

@@ -1,0 +1,612 @@
+{
+  "name": "janus-elements",
+  "version": "0.1.0",
+  "description": "A small UI library built on Custom Elements",
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "ui-kit",
+    "tagged-template",
+    "no-build"
+  ],
+  "type": "module",
+  "main": "src/janus/index.js",
+  "types": "./src/janus/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/janus/index.d.ts",
+      "import": "./src/janus/index.js",
+      "default": "./src/janus/index.js"
+    },
+    "./ui": {
+      "types": "./src/janus/ui/index.d.ts",
+      "import": "./src/janus/ui/index.js",
+      "default": "./src/janus/ui/index.js"
+    },
+    "./ui/button": {
+      "types": "./src/janus/ui/Button.d.ts",
+      "import": "./src/janus/ui/Button.js",
+      "default": "./src/janus/ui/Button.js"
+    },
+    "./ui/input": {
+      "types": "./src/janus/ui/Input.d.ts",
+      "import": "./src/janus/ui/Input.js",
+      "default": "./src/janus/ui/Input.js"
+    },
+    "./ui/number-input": {
+      "types": "./src/janus/ui/NumberInput.d.ts",
+      "import": "./src/janus/ui/NumberInput.js",
+      "default": "./src/janus/ui/NumberInput.js"
+    },
+    "./ui/range-input": {
+      "types": "./src/janus/ui/RangeInput.d.ts",
+      "import": "./src/janus/ui/RangeInput.js",
+      "default": "./src/janus/ui/RangeInput.js"
+    },
+    "./ui/color-input": {
+      "types": "./src/janus/ui/ColorInput.d.ts",
+      "import": "./src/janus/ui/ColorInput.js",
+      "default": "./src/janus/ui/ColorInput.js"
+    },
+    "./ui/file-input": {
+      "types": "./src/janus/ui/FileInput.d.ts",
+      "import": "./src/janus/ui/FileInput.js",
+      "default": "./src/janus/ui/FileInput.js"
+    },
+    "./ui/date-picker": {
+      "types": "./src/janus/ui/DatePicker.d.ts",
+      "import": "./src/janus/ui/DatePicker.js",
+      "default": "./src/janus/ui/DatePicker.js"
+    },
+    "./ui/time-picker": {
+      "types": "./src/janus/ui/TimePicker.d.ts",
+      "import": "./src/janus/ui/TimePicker.js",
+      "default": "./src/janus/ui/TimePicker.js"
+    },
+    "./ui/date-time-picker": {
+      "types": "./src/janus/ui/DateTimePicker.d.ts",
+      "import": "./src/janus/ui/DateTimePicker.js",
+      "default": "./src/janus/ui/DateTimePicker.js"
+    },
+    "./ui/week-picker": {
+      "types": "./src/janus/ui/WeekPicker.d.ts",
+      "import": "./src/janus/ui/WeekPicker.js",
+      "default": "./src/janus/ui/WeekPicker.js"
+    },
+    "./ui/month-picker": {
+      "types": "./src/janus/ui/MonthPicker.d.ts",
+      "import": "./src/janus/ui/MonthPicker.js",
+      "default": "./src/janus/ui/MonthPicker.js"
+    },
+    "./ui/date-range-picker": {
+      "types": "./src/janus/ui/DateRangePicker.d.ts",
+      "import": "./src/janus/ui/DateRangePicker.js",
+      "default": "./src/janus/ui/DateRangePicker.js"
+    },
+    "./ui/textarea": {
+      "types": "./src/janus/ui/Textarea.d.ts",
+      "import": "./src/janus/ui/Textarea.js",
+      "default": "./src/janus/ui/Textarea.js"
+    },
+    "./ui/code-editor": {
+      "types": "./src/janus/ui/CodeEditor.d.ts",
+      "import": "./src/janus/ui/CodeEditor.js",
+      "default": "./src/janus/ui/CodeEditor.js"
+    },
+    "./ui/rich-textarea": {
+      "types": "./src/janus/ui/RichTextarea.d.ts",
+      "import": "./src/janus/ui/RichTextarea.js",
+      "default": "./src/janus/ui/RichTextarea.js"
+    },
+    "./ui/highlight": {
+      "types": "./src/janus/ui/highlight.d.ts",
+      "import": "./src/janus/ui/highlight/index.js",
+      "default": "./src/janus/ui/highlight/index.js"
+    },
+    "./ui/select": {
+      "types": "./src/janus/ui/Select.d.ts",
+      "import": "./src/janus/ui/Select.js",
+      "default": "./src/janus/ui/Select.js"
+    },
+    "./ui/base-theme": {
+      "types": "./src/janus/ui/BaseTheme.d.ts",
+      "import": "./src/janus/ui/BaseTheme.js",
+      "default": "./src/janus/ui/BaseTheme.js"
+    },
+    "./ui/panel": {
+      "types": "./src/janus/ui/Panel.d.ts",
+      "import": "./src/janus/ui/Panel.js",
+      "default": "./src/janus/ui/Panel.js"
+    },
+    "./ui/spinner": {
+      "types": "./src/janus/ui/Spinner.d.ts",
+      "import": "./src/janus/ui/Spinner.js",
+      "default": "./src/janus/ui/Spinner.js"
+    },
+    "./ui/tooltip": {
+      "types": "./src/janus/ui/Tooltip.d.ts",
+      "import": "./src/janus/ui/Tooltip.js",
+      "default": "./src/janus/ui/Tooltip.js"
+    },
+    "./ui/navbar": {
+      "types": "./src/janus/ui/Navbar.d.ts",
+      "import": "./src/janus/ui/Navbar.js",
+      "default": "./src/janus/ui/Navbar.js"
+    },
+    "./ui/toolbar": {
+      "types": "./src/janus/ui/Toolbar.d.ts",
+      "import": "./src/janus/ui/Toolbar.js",
+      "default": "./src/janus/ui/Toolbar.js"
+    },
+    "./ui/badge": {
+      "types": "./src/janus/ui/Badge.d.ts",
+      "import": "./src/janus/ui/Badge.js",
+      "default": "./src/janus/ui/Badge.js"
+    },
+    "./ui/checkbox": {
+      "types": "./src/janus/ui/Checkbox.d.ts",
+      "import": "./src/janus/ui/Checkbox.js",
+      "default": "./src/janus/ui/Checkbox.js"
+    },
+    "./ui/switch": {
+      "types": "./src/janus/ui/Switch.d.ts",
+      "import": "./src/janus/ui/Switch.js",
+      "default": "./src/janus/ui/Switch.js"
+    },
+    "./ui/radio-group": {
+      "types": "./src/janus/ui/RadioGroup.d.ts",
+      "import": "./src/janus/ui/RadioGroup.js",
+      "default": "./src/janus/ui/RadioGroup.js"
+    },
+    "./ui/field": {
+      "types": "./src/janus/ui/Field.d.ts",
+      "import": "./src/janus/ui/Field.js",
+      "default": "./src/janus/ui/Field.js"
+    },
+    "./ui/feedback": {
+      "types": "./src/janus/ui/Feedback.d.ts",
+      "import": "./src/janus/ui/Feedback.js",
+      "default": "./src/janus/ui/Feedback.js"
+    },
+    "./ui/progress": {
+      "types": "./src/janus/ui/Progress.d.ts",
+      "import": "./src/janus/ui/Progress.js",
+      "default": "./src/janus/ui/Progress.js"
+    },
+    "./ui/tabs": {
+      "types": "./src/janus/ui/Tabs.d.ts",
+      "import": "./src/janus/ui/Tabs.js",
+      "default": "./src/janus/ui/Tabs.js"
+    },
+    "./ui/accordion": {
+      "types": "./src/janus/ui/Accordion.d.ts",
+      "import": "./src/janus/ui/Accordion.js",
+      "default": "./src/janus/ui/Accordion.js"
+    },
+    "./ui/card": {
+      "types": "./src/janus/ui/Card.d.ts",
+      "import": "./src/janus/ui/Card.js",
+      "default": "./src/janus/ui/Card.js"
+    },
+    "./ui/table": {
+      "types": "./src/janus/ui/Table.d.ts",
+      "import": "./src/janus/ui/Table.js",
+      "default": "./src/janus/ui/Table.js"
+    },
+    "./ui/pagination": {
+      "types": "./src/janus/ui/Pagination.d.ts",
+      "import": "./src/janus/ui/Pagination.js",
+      "default": "./src/janus/ui/Pagination.js"
+    },
+    "./ui/icons": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icons.js",
+      "default": "./src/janus/ui/icons.js"
+    },
+    "./ui/icons/search": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/search.js",
+      "default": "./src/janus/ui/icon/search.js"
+    },
+    "./ui/icons/menu": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/menu.js",
+      "default": "./src/janus/ui/icon/menu.js"
+    },
+    "./ui/icons/close": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/close.js",
+      "default": "./src/janus/ui/icon/close.js"
+    },
+    "./ui/icons/home": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/home.js",
+      "default": "./src/janus/ui/icon/home.js"
+    },
+    "./ui/icons/user": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/user.js",
+      "default": "./src/janus/ui/icon/user.js"
+    },
+    "./ui/icons/settings": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/settings.js",
+      "default": "./src/janus/ui/icon/settings.js"
+    },
+    "./ui/icons/cart": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/cart.js",
+      "default": "./src/janus/ui/icon/cart.js"
+    },
+    "./ui/icons/heart": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/heart.js",
+      "default": "./src/janus/ui/icon/heart.js"
+    },
+    "./ui/icons/bell": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/bell.js",
+      "default": "./src/janus/ui/icon/bell.js"
+    },
+    "./ui/icons/chevron": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/chevron.js",
+      "default": "./src/janus/ui/icon/chevron.js"
+    },
+    "./ui/icons/check": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/check.js",
+      "default": "./src/janus/ui/icon/check.js"
+    },
+    "./ui/icons/plus": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/plus.js",
+      "default": "./src/janus/ui/icon/plus.js"
+    },
+    "./ui/icons/trash": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/trash.js",
+      "default": "./src/janus/ui/icon/trash.js"
+    },
+    "./ui/icons/edit": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/edit.js",
+      "default": "./src/janus/ui/icon/edit.js"
+    },
+    "./ui/icons/share": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/share.js",
+      "default": "./src/janus/ui/icon/share.js"
+    },
+    "./ui/icons/star": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/star.js",
+      "default": "./src/janus/ui/icon/star.js"
+    },
+    "./ui/icons/lock": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/lock.js",
+      "default": "./src/janus/ui/icon/lock.js"
+    },
+    "./ui/icons/eye": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/eye.js",
+      "default": "./src/janus/ui/icon/eye.js"
+    },
+    "./ui/icons/envelope": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/envelope.js",
+      "default": "./src/janus/ui/icon/envelope.js"
+    },
+    "./ui/icons/play": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/play.js",
+      "default": "./src/janus/ui/icon/play.js"
+    },
+    "./ui/icons/clock": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/clock.js",
+      "default": "./src/janus/ui/icon/clock.js"
+    },
+    "./ui/icons/calendar": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/calendar.js",
+      "default": "./src/janus/ui/icon/calendar.js"
+    },
+    "./ui/icons/key": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/key.js",
+      "default": "./src/janus/ui/icon/key.js"
+    },
+    "./ui/icons/file": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/file.js",
+      "default": "./src/janus/ui/icon/file.js"
+    },
+    "./ui/icons/folder": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/folder.js",
+      "default": "./src/janus/ui/icon/folder.js"
+    },
+    "./ui/icons/download": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/download.js",
+      "default": "./src/janus/ui/icon/download.js"
+    },
+    "./ui/icons/upload": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/upload.js",
+      "default": "./src/janus/ui/icon/upload.js"
+    },
+    "./ui/icons/export": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/export.js",
+      "default": "./src/janus/ui/icon/export.js"
+    },
+    "./ui/icons/copy": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/copy.js",
+      "default": "./src/janus/ui/icon/copy.js"
+    },
+    "./ui/icons/link": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/link.js",
+      "default": "./src/janus/ui/icon/link.js"
+    },
+    "./ui/icons/markdown": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/markdown.js",
+      "default": "./src/janus/ui/icon/markdown.js"
+    },
+    "./ui/icons/info": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/info.js",
+      "default": "./src/janus/ui/icon/info.js"
+    },
+    "./ui/icons/filter": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/filter.js",
+      "default": "./src/janus/ui/icon/filter.js"
+    },
+    "./ui/icons/refresh": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/refresh.js",
+      "default": "./src/janus/ui/icon/refresh.js"
+    },
+    "./ui/icons/image": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/image.js",
+      "default": "./src/janus/ui/icon/image.js"
+    },
+    "./ui/icons/map-pin": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/map-pin.js",
+      "default": "./src/janus/ui/icon/map-pin.js"
+    },
+    "./ui/icons/phone": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/phone.js",
+      "default": "./src/janus/ui/icon/phone.js"
+    },
+    "./ui/icons/bookmark": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/bookmark.js",
+      "default": "./src/janus/ui/icon/bookmark.js"
+    },
+    "./ui/icons/message": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/message.js",
+      "default": "./src/janus/ui/icon/message.js"
+    },
+    "./ui/icons/cloud": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/cloud.js",
+      "default": "./src/janus/ui/icon/cloud.js"
+    },
+    "./ui/icons/eye-off": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/eye-off.js",
+      "default": "./src/janus/ui/icon/eye-off.js"
+    },
+    "./ui/icons/unlock": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/unlock.js",
+      "default": "./src/janus/ui/icon/unlock.js"
+    },
+    "./ui/icons/sun": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/sun.js",
+      "default": "./src/janus/ui/icon/sun.js"
+    },
+    "./ui/icons/moon": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/moon.js",
+      "default": "./src/janus/ui/icon/moon.js"
+    },
+    "./ui/icons/day-night": {
+      "types": "./src/janus/ui/icon.d.ts",
+      "import": "./src/janus/ui/icon/day-night.js",
+      "default": "./src/janus/ui/icon/day-night.js"
+    },
+    "./ui/characters-icon": {
+      "types": "./src/janus/ui/CharactersIcon.d.ts",
+      "import": "./src/janus/ui/CharactersIcon.js",
+      "default": "./src/janus/ui/CharactersIcon.js"
+    },
+    "./ui/icon-disc-wrapper": {
+      "types": "./src/janus/ui/IconDiscWrapper.d.ts",
+      "import": "./src/janus/ui/IconDiscWrapper.js",
+      "default": "./src/janus/ui/IconDiscWrapper.js"
+    },
+    "./ui/icon-square-wrapper": {
+      "types": "./src/janus/ui/IconSquareWrapper.d.ts",
+      "import": "./src/janus/ui/IconSquareWrapper.js",
+      "default": "./src/janus/ui/IconSquareWrapper.js"
+    },
+    "./ui/icon-triangle-wrapper": {
+      "types": "./src/janus/ui/IconTriangleWrapper.d.ts",
+      "import": "./src/janus/ui/IconTriangleWrapper.js",
+      "default": "./src/janus/ui/IconTriangleWrapper.js"
+    },
+    "./ui/theme": {
+      "types": "./src/janus/ui/theme.d.ts",
+      "import": "./src/janus/ui/theme.js",
+      "default": "./src/janus/ui/theme.js"
+    },
+    "./ui/util": {
+      "types": "./src/janus/ui/util.d.ts",
+      "import": "./src/janus/ui/util.js",
+      "default": "./src/janus/ui/util.js"
+    },
+    "./ui/latestAsync": {
+      "types": "./src/janus/ui/latestAsync.d.ts",
+      "import": "./src/janus/ui/latestAsync.js",
+      "default": "./src/janus/ui/latestAsync.js"
+    },
+    "./ui/createIcon": {
+      "types": "./src/janus/ui/createIcon.d.ts",
+      "import": "./src/janus/ui/createIcon.js",
+      "default": "./src/janus/ui/createIcon.js"
+    },
+    "./ui/modal": {
+      "types": "./src/janus/ui/modal.d.ts",
+      "import": "./src/janus/ui/modal.js",
+      "default": "./src/janus/ui/modal.js"
+    },
+    "./ui/toast": {
+      "types": "./src/janus/ui/toast.d.ts",
+      "import": "./src/janus/ui/toast.js",
+      "default": "./src/janus/ui/toast.js"
+    },
+    "./ui/router": {
+      "types": "./src/janus/ui/router.d.ts",
+      "import": "./src/janus/ui/Router.js",
+      "default": "./src/janus/ui/Router.js"
+    }
+  },
+  "bin": {
+    "januse": "./bin/januse.mjs"
+  },
+  "files": [
+    "bin",
+    "scripts/januse",
+    "src/janus",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "dev": "januse dev --watch src --watch docs --sync \"src/janus:docs/lib/janus\" docs",
+    "lint": "januse lint",
+    "format": "januse format docs src",
+    "check-format": "januse format --check docs src",
+    "check": "npm run lint && npm run check-format && npm run test",
+    "test": "node --test src/tests/*.test.js"
+  },
+  "author": "Magnus Weinberg",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotmonk/janus-elements.git"
+  },
+  "homepage": "https://dotmonk.github.io/janus-elements/",
+  "bugs": {
+    "url": "https://github.com/dotmonk/janus-elements/issues"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "typescript": "^5.9.3"
+  },
+  "sideEffects": [
+    "./src/janus/Component.js",
+    "./src/janus/index.js",
+    "./src/janus/template/createTemplateFunction.js",
+    "./src/janus/template/index.js",
+    "./src/janus/template/render.js",
+    "./src/janus/ui/Accordion.js",
+    "./src/janus/ui/Badge.js",
+    "./src/janus/ui/BaseTheme.js",
+    "./src/janus/ui/Button.js",
+    "./src/janus/ui/Card.js",
+    "./src/janus/ui/CharactersIcon.js",
+    "./src/janus/ui/Checkbox.js",
+    "./src/janus/ui/CodeEditor.js",
+    "./src/janus/ui/ColorInput.js",
+    "./src/janus/ui/DatePicker.js",
+    "./src/janus/ui/DateRangePicker.js",
+    "./src/janus/ui/DateTimePicker.js",
+    "./src/janus/ui/Feedback.js",
+    "./src/janus/ui/Field.js",
+    "./src/janus/ui/FileInput.js",
+    "./src/janus/ui/IconDiscWrapper.js",
+    "./src/janus/ui/IconSquareWrapper.js",
+    "./src/janus/ui/IconTriangleWrapper.js",
+    "./src/janus/ui/Input.js",
+    "./src/janus/ui/MonthPicker.js",
+    "./src/janus/ui/Navbar.js",
+    "./src/janus/ui/NumberInput.js",
+    "./src/janus/ui/Pagination.js",
+    "./src/janus/ui/Panel.js",
+    "./src/janus/ui/Progress.js",
+    "./src/janus/ui/RadioGroup.js",
+    "./src/janus/ui/RangeInput.js",
+    "./src/janus/ui/RichTextarea.js",
+    "./src/janus/ui/Router.js",
+    "./src/janus/ui/Select.js",
+    "./src/janus/ui/Spinner.js",
+    "./src/janus/ui/Switch.js",
+    "./src/janus/ui/Table.js",
+    "./src/janus/ui/Tabs.js",
+    "./src/janus/ui/Textarea.js",
+    "./src/janus/ui/TimePicker.js",
+    "./src/janus/ui/Toolbar.js",
+    "./src/janus/ui/Tooltip.js",
+    "./src/janus/ui/WeekPicker.js",
+    "./src/janus/ui/icon/bell.js",
+    "./src/janus/ui/icon/bookmark.js",
+    "./src/janus/ui/icon/calendar.js",
+    "./src/janus/ui/icon/cart.js",
+    "./src/janus/ui/icon/check.js",
+    "./src/janus/ui/icon/chevron.js",
+    "./src/janus/ui/icon/clock.js",
+    "./src/janus/ui/icon/close.js",
+    "./src/janus/ui/icon/cloud.js",
+    "./src/janus/ui/icon/copy.js",
+    "./src/janus/ui/icon/day-night.js",
+    "./src/janus/ui/icon/download.js",
+    "./src/janus/ui/icon/edit.js",
+    "./src/janus/ui/icon/envelope.js",
+    "./src/janus/ui/icon/export.js",
+    "./src/janus/ui/icon/eye-off.js",
+    "./src/janus/ui/icon/eye.js",
+    "./src/janus/ui/icon/file.js",
+    "./src/janus/ui/icon/filter.js",
+    "./src/janus/ui/icon/folder.js",
+    "./src/janus/ui/icon/heart.js",
+    "./src/janus/ui/icon/home.js",
+    "./src/janus/ui/icon/image.js",
+    "./src/janus/ui/icon/info.js",
+    "./src/janus/ui/icon/key.js",
+    "./src/janus/ui/icon/link.js",
+    "./src/janus/ui/icon/lock.js",
+    "./src/janus/ui/icon/map-pin.js",
+    "./src/janus/ui/icon/markdown.js",
+    "./src/janus/ui/icon/menu.js",
+    "./src/janus/ui/icon/message.js",
+    "./src/janus/ui/icon/moon.js",
+    "./src/janus/ui/icon/phone.js",
+    "./src/janus/ui/icon/play.js",
+    "./src/janus/ui/icon/plus.js",
+    "./src/janus/ui/icon/refresh.js",
+    "./src/janus/ui/icon/search.js",
+    "./src/janus/ui/icon/settings.js",
+    "./src/janus/ui/icon/share.js",
+    "./src/janus/ui/icon/star.js",
+    "./src/janus/ui/icon/sun.js",
+    "./src/janus/ui/icon/trash.js",
+    "./src/janus/ui/icon/unlock.js",
+    "./src/janus/ui/icon/upload.js",
+    "./src/janus/ui/icon/user.js",
+    "./src/janus/ui/icons.js",
+    "./src/janus/ui/index.js",
+    "./src/janus/ui/modal.js"
+  ]
+}
