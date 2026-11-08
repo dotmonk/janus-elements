@@ -8,6 +8,12 @@ patch version.
 
 First release (prepared for npm; not published yet).
 
+### Changed
+
+- **`januse dev`:** Serves and resolves `--watch` / `--sync` paths against the
+  **current working directory**, not the package install directory, so the same
+  CLI works for this repo’s docs and for consumer apps.
+
 ### Added
 
 - **Core:** `Component`, `Component.register`, React-style lifecycle, and the

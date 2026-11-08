@@ -14,10 +14,21 @@ import {
   fileURLToPath,
 } from "node:url";
 
-export const repoRoot = join(
+/** Install location of the janus-elements package (bin / scripts). */
+export const packageRoot = join(
   dirname(fileURLToPath(import.meta.url)),
   "../..",
 );
+
+/**
+ * Project being operated on: the caller's working directory.
+ * `januse lint|format|dev` resolve relative paths and (for dev) the document
+ * root against this, so the CLI works from this repo and from consumer apps.
+ */
+export const projectRoot = () => process.cwd();
+
+/** @deprecated Use packageRoot or projectRoot(); kept for existing tests. */
+export const repoRoot = packageRoot;
 
 const SKIPPED_DIRECTORY_NAMES = new Set(
   [
@@ -32,7 +43,7 @@ const SKIPPED_REPO_PATHS = new Set(
 );
 
 const isSkippedDirectory = (absolutePath, name) => SKIPPED_DIRECTORY_NAMES.has(name) || SKIPPED_REPO_PATHS.has(relative(
-  repoRoot,
+  projectRoot(),
   absolutePath,
 ).split("\\").join("/"));
 

@@ -10,9 +10,8 @@ import {
   statSync,
 } from "node:fs";
 import { dirname, extname, join, relative, resolve, sep } from "node:path";
-import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
-import { defaultTargets, repoRoot } from "./walk.mjs";
+import { defaultTargets, projectRoot } from "./walk.mjs";
 
 const host = "127.0.0.1";
 const port = Number(process.env.PORT || 8000);
@@ -115,8 +114,9 @@ function parseArgs(argv) {
 }
 
 function makeSync(fromRel, toRel) {
-  const fromDir = resolve(repoRoot, fromRel);
-  const toDir = resolve(repoRoot, toRel);
+  const root = projectRoot();
+  const fromDir = resolve(root, fromRel);
+  const toDir = resolve(root, toRel);
   const parent = dirname(toDir);
   let syncTimer = null;
   let syncing = false;
@@ -176,9 +176,10 @@ function makeSync(fromRel, toRel) {
 }
 
 function resolvePath(requestUrl) {
+  const root = projectRoot();
   const pathOnly = decodeURIComponent((requestUrl || "/").split("?")[0]);
-  const absolute = resolve(repoRoot, `.${pathOnly}`);
-  if (absolute !== repoRoot && !absolute.startsWith(`${repoRoot}${sep}`)) {
+  const absolute = resolve(root, `.${pathOnly}`);
+  if (absolute !== root && !absolute.startsWith(`${root}${sep}`)) {
     return null;
   }
   return absolute;
@@ -203,10 +204,10 @@ function acceptWebSocket(request, socket, head) {
     .digest("base64");
   socket.write(
     "HTTP/1.1 101 Switching Protocols\r\n" +
-      "Upgrade: websocket\r\n" +
-      "Connection: Upgrade\r\n" +
-      `Sec-WebSocket-Accept: ${accept}\r\n` +
-      "\r\n",
+    "Upgrade: websocket\r\n" +
+    "Connection: Upgrade\r\n" +
+    `Sec-WebSocket-Accept: ${accept}\r\n` +
+    "\r\n",
   );
   if (head?.length) {
     socket.unshift(head);
@@ -274,6 +275,8 @@ export async function runDev(argv) {
     notifyTimer = setTimeout(flushNotify, 50);
   };
 
+  const root = projectRoot();
+
   const onWatchEvent = (_eventType, filename, watchRoot) => {
     if (!filename) {
       return;
@@ -282,7 +285,7 @@ export async function runDev(argv) {
     if (syncer?.covers(absolute)) {
       syncer.scheduleSync();
     }
-    const rel = relative(repoRoot, absolute).split("\\").join("/");
+    const rel = relative(root, absolute).split("\\").join("/");
     if (
       rel.endsWith(".js") ||
       rel.endsWith(".mjs") ||
@@ -290,10 +293,10 @@ export async function runDev(argv) {
       rel.endsWith(".svg")
     ) {
       scheduleNotify(`/${rel}`);
-      // Synced library copies are served under docs/lib — notify that URL too.
+      // Synced library copies are served under their --sync destination too.
       if (syncer && syncer.covers(absolute)) {
-        const fromRel = relative(repoRoot, syncer.fromDir).split("\\").join("/");
-        const toRel = relative(repoRoot, syncer.toDir).split("\\").join("/");
+        const fromRel = relative(root, syncer.fromDir).split("\\").join("/");
+        const toRel = relative(root, syncer.toDir).split("\\").join("/");
         if (rel.startsWith(`${fromRel}/`) || rel === fromRel) {
           const suffix = rel.slice(fromRel.length);
           scheduleNotify(`/${toRel}${suffix}`);
@@ -303,7 +306,7 @@ export async function runDev(argv) {
   };
 
   for (const watchPath of watchPaths) {
-    const absolute = resolve(repoRoot, watchPath);
+    const absolute = resolve(root, watchPath);
     if (!existsSync(absolute)) {
       throw new Error(`Watch path not found: ${watchPath}`);
     }
@@ -388,11 +391,11 @@ export async function runDev(argv) {
     client.on("close", () => clients.delete(client));
     client.on("error", () => clients.delete(client));
     // Drain frames so the TCP window stays open; ignore client→server data.
-    client.on("data", () => {});
+    client.on("data", () => { });
   });
 
   server.listen(port, host, () => {
-    console.log(`januse dev at http://${host}:${port}/docs/`);
+    console.log(`januse dev at http://${host}:${port}/ (cwd ${root})`);
     if (syncer) {
       console.log(`Sync ${sync.from} → ${sync.to}`);
     }

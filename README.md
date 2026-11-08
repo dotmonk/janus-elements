@@ -129,7 +129,7 @@ day-to-day work:
 | `januse lint [paths…]` | Unused bindings (unless `_`), no-undef, prefer `===`, duplicate keys on `.js`/`.mjs`/`.ts`. Default path `src`. |
 | `januse format [paths…]` | Rewrite `.js`/`.mjs`/`.ts`/`.json`/`.svg`/`.html` (including `html\`…\`` templates). Skips `*.compact.js` and `*.spaced.js`. |
 | `januse format --check` | Same as format but write nothing; exit `-1` (shell `255`) if a file would change. |
-| `januse dev` | Serve `127.0.0.1:8000` (`PORT` overrides), `--watch` paths, optional `--sync from:to`, HMR over `/__januse_hmr`. |
+| `januse dev` | Serve the **current working directory** at `127.0.0.1:8000` (`PORT` overrides), `--watch` paths, optional `--sync from:to`, HMR over `/__januse_hmr`. From this repo, `npm run dev` still opens `/docs/`; from an app, point `--watch` / `--sync` at that app’s paths. |
 
 `./check.sh` builds the `janus-check` Docker image (retries flaky BuildKit
 failures), then runs `tsc --noEmit`, `januse format --check docs src`, unit

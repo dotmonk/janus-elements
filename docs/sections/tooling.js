@@ -17,7 +17,8 @@ npm run check-format     # exit -1 if a rewrite would change a file
 const devSnippet = `npm run dev
 # januse dev --watch src --watch docs \\
 #   --sync "src/janus:docs/lib/janus" docs
-# serves http://127.0.0.1:8000/ with HMR; open /docs/`;
+# serves cwd at http://127.0.0.1:8000/ with HMR; open /docs/
+# from an app: januse dev --watch frontend --sync "…:frontend/lib/janus" frontend`;
 
 const checkSnippet = `./check.sh
 # Docker: tsc --noEmit → januse format --check docs src →
@@ -90,15 +91,21 @@ class DocsTooling extends Component {
         />
         <h3>januse dev</h3>
         <p>
-          Serves the repo on
+          Serves the
+          <strong>current working directory</strong>
+          on
           <code>127.0.0.1:8000</code>
           (override with
           <code>PORT</code>
           ), watches paths, optional
           <code>--sync from:to</code>
-          copies (docs use
+          copies (this repo’s docs use
           <code>src/janus → docs/lib/janus</code>
-          ), and reloads modules over a WebSocket HMR channel. Responses use no-store cache headers.
+          ), and reloads modules over a WebSocket HMR channel. Responses use no-store cache headers. Consumer apps run the same command from their project root with their own
+          <code>--watch</code>
+          /
+          <code>--sync</code>
+          paths.
         </p>
         <CodeSnippet
           language="bash"

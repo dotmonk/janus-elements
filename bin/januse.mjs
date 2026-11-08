@@ -11,6 +11,8 @@ const usage = `Usage:
   januse format [--check] [paths...]
   januse dev [--watch path]... [--sync from:to] [watchPaths...]
 
+Paths resolve against the current working directory.
+januse dev serves that directory (not the package install path).
 --watch may be repeated. Default watch path is src when omitted.
 `;
 

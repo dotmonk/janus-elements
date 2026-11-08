@@ -12,6 +12,19 @@ Fine-grained react-select API aliases only if apps need them.
 
 ## Done
 
+### januse dev uses cwd as document root — Done (2026-11-08)
+
+**Goal:** `januse dev` serves `process.cwd()` (and resolves `--watch` /
+`--sync` against it) so the CLI works for this repo’s docs and for apps that
+depend on janus-elements.
+
+**Decisions:** Keep `packageRoot` as the install path; add `projectRoot()` =
+cwd. Lint/format already collected files from cwd; only `dev` was package-rooted.
+
+**Validation:** `node --test src/tests/januse-dev-root.test.js` — 2 pass
+(cwd temp dir marker + package `docs/`). Full `./check.sh` not re-run here
+(user taking over).
+
 ### Playwright webServer in CI — Done (2026-11-03)
 
 **Goal:** GitHub Actions can start the docs server. Playwright must not
