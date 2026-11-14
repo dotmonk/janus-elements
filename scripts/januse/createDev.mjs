@@ -48,7 +48,19 @@ const HMR_CLIENT = `(() => {
     }
   });
   socket.addEventListener("close", () => {
-    setTimeout(() => location.reload(), 500);
+    let delay = 250;
+    const reloadWhenServerAnswers = async () => {
+      try {
+        const response = await fetch(location.href, { cache: "no-store" });
+        if (response.ok) {
+          location.reload();
+          return;
+        }
+      } catch {}
+      delay = Math.min(delay * 2, 5000);
+      setTimeout(reloadWhenServerAnswers, delay);
+    };
+    setTimeout(reloadWhenServerAnswers, delay);
   });
 })();`;
 
