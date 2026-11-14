@@ -153,21 +153,25 @@ const hotSwapRegistered = (elementName, Previous, Next) => {
   );
 };
 
-Component.register = (classInstance) => {
+Component.register = (classInstance, name = classInstance.name) => {
   if (typeof customElements === "undefined") {
     return;
   }
-  const elementName = `janus${camelToKebab(classInstance.name)}`;
+  const elementName = `janus${camelToKebab(name)}`;
   const existing = customElements.get(elementName);
+  if (existing === classInstance) {
+    return;
+  }
   if (existing) {
-    if (globalThis.__JANUSE_HMR__) {
+    if (globalThis.__JANUSE_HMR_UPDATING__ > 0) {
       hotSwapRegistered(
         elementName,
         existing,
         classInstance,
       );
+      return;
     }
-    return;
+    throw new Error(`Component.register: <${elementName}> is already registered by another class; pass a unique name as the second argument`);
   }
   customElements.define(
     elementName,

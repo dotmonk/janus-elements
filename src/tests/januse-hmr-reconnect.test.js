@@ -211,3 +211,59 @@ test(
     );
   },
 );
+
+test(
+  "the HMR client marks registrations made while it applies an update",
+  async () => {
+    const context = {
+      location: {
+        protocol: "http:",
+        host: "127.0.0.1:3010",
+        href: "http://127.0.0.1:3010/",
+      },
+      WebSocket: class {
+
+        constructor() {
+          context.socket = this;
+          this.listeners = {};
+        }
+
+        addEventListener(type, listener) {
+          this.listeners[type] = listener;
+        }
+      },
+      console: {
+        error() {},
+      },
+    };
+    context.globalThis = context;
+    globalThis.hmrProbeContext = context;
+    vm.runInNewContext(
+      servedHmrScript(),
+      context,
+      {
+        importModuleDynamically: vm.constants.USE_MAIN_CONTEXT_DEFAULT_LOADER,
+      },
+    );
+    const probeModule = "globalThis.hmrProbeObserved = globalThis.hmrProbeContext.__JANUSE_HMR_UPDATING__; //";
+    await context.socket.listeners.message(
+      {
+        data: JSON.stringify(
+          {
+            type: "update",
+            url: `data:text/javascript,${encodeURIComponent(probeModule)}`,
+            t: 1,
+          },
+        ),
+      },
+    );
+    assert.equal(
+      globalThis.hmrProbeObserved,
+      1,
+    );
+    assert.equal(
+      context.__JANUSE_HMR_UPDATING__,
+      0,
+    );
+  },
+);

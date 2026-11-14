@@ -41,10 +41,13 @@ const HMR_CLIENT = `(() => {
     try { payload = JSON.parse(event.data); } catch { return; }
     if (payload.type !== "update" || !payload.url) return;
     const url = payload.url + (payload.url.includes("?") ? "&" : "?") + "t=" + payload.t;
+    globalThis.__JANUSE_HMR_UPDATING__ = (globalThis.__JANUSE_HMR_UPDATING__ || 0) + 1;
     try {
       await import(url);
     } catch (error) {
       console.error("[januse hmr] failed to reload", payload.url, error);
+    } finally {
+      globalThis.__JANUSE_HMR_UPDATING__--;
     }
   });
   socket.addEventListener("close", () => {

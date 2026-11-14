@@ -40,7 +40,7 @@ declare class Component extends HTMLElement {
 
   componentWillReceiveProps?(props: JanusProps | undefined, state: Record<string, unknown>): void;
 
-  static register(classInstance: CustomElementConstructor): void;
+  static register(classInstance: CustomElementConstructor, name?: string): void;
 }
 
 export declare function html(strings: TemplateStringsArray, ...values: unknown[]): JanusTemplateResult;

@@ -76,3 +76,16 @@ it.
 **What happened:** `check.sh`, `PLAN.md` and `FRICTION.md` were all missing, so
 no change, documentation included, could be validated as the rules require.
 **Status:** resolved in Phase 1; `check.sh` now runs the Node unit tests.
+
+## Gate red before the work started (2026-11-14)
+
+**Rule:** "A broken build or failing test stops work … Report pre-existing failures and
+ask; do not bypass a gate."
+**What happened:** `./check.sh` failed on `package.test.js` (the `./januse` export is not
+in the UI exports manifest) before any change. Because the Docker command chains steps with
+`&&`, the failing unit test also hides the whole Playwright tier. To validate the
+`Component.register` change at all, the browser tier was run separately in the same image;
+the gate itself was reported red, not passed.
+**Cost:** a second Docker run and a phase that cannot be closed until someone fixes an
+unrelated test.
+**Status:** resolved 2026-11-14: `./januse` added to the exports manifest; `./check.sh` green.

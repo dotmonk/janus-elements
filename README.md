@@ -188,7 +188,10 @@ valid Janus Elements code such as `onClick=${fn}`.
 
 `Component.register` defines `janus-` plus the class name in kebab case, here
 `<janus-counter>`. Each capital letter starts a new word, so `UI` becomes
-`<janus-u-i>`.
+`<janus-u-i>`. Pass the name as a second argument when class names are not
+stable, for example after minification: `Component.register(Counter, "Counter")`.
+Registering a different class under a name that is already taken throws; only
+`januse dev` hot reloads may replace a registered class.
 
 ## UI kit
 
