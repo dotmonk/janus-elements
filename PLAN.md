@@ -6,19 +6,43 @@ _(none)_
 
 ## Planned
 
-### `januse dev --sync` never finishes in the check image
-
-Found 2026-11-14: in `janus-check`, `januse dev --sync "src/janus:docs/lib/janus"` leaves
-`docs/lib/.staging-<pid>` behind and never replaces `docs/lib/janus` (no "Synced" or
-"Sync failed" line), although a plain `cpSync` of the same tree takes 6 ms. The docs-based
-Playwright tests therefore run against whatever `docs/lib` the image copied from the host.
-Not yet investigated; seen in the container only.
-
 ### Select react-select parity (follow-ups)
 
 Fine-grained react-select API aliases only if apps need them.
 
 ## Done
+
+### `januse dev --sync` works in Docker — Done (2026-11-14)
+
+**Goal:** `--sync` replaces its target inside the `janus-check` image, so the docs-based
+Playwright tests run against the current `src/janus` instead of the `docs/lib` copied from
+the host when the image was built.
+
+**Cause:** the sync moves the old target aside with `rename`. Docker's overlayfs cannot
+rename a directory that comes from an image layer and fails with `EXDEV`, so every sync in
+the image printed `Sync failed: EXDEV …` and left `docs/lib/.staging-<pid>` behind. (An
+earlier note here said the sync never finished; the error line had been cut from the
+output.)
+
+**Steps:**
+- [x] Test first: `januse-sync-exdev.test.js` makes `renameSync` of the target throw
+      `EXDEV`; red with the same message as in the image
+- [x] On `EXDEV`, remove the old target instead of moving it aside, then rename the staged
+      copy into place
+
+**Done when:** in the image, `januse dev --sync "src/janus:docs/lib/janus"` prints
+`Synced` and `docs/lib/janus` matches `src/janus`.
+
+**Validation:** the new test passes on the host. In `janus-check` with the fixed scripts
+mounted: the first run takes the `EXDEV` path and syncs, a second run (target now in the
+container layer) syncs by rename; both leave `docs/lib` matching `src`. `./check.sh` exit 0:
+`tsc` clean, `format --check` 344 files clean, `node --test` 148/148, Playwright 657
+passed. `januse lint src` clean. Outside the gate, `scripts/` already had 7 files the
+formatter would change (including `createDev.mjs` at HEAD) and 2 lint findings; unchanged.
+
+**Limitations:** on the `EXDEV` path the target is briefly missing between the removal and
+the rename, so a request in that moment can 404. Only the first sync in a fresh container
+takes that path.
 
 ### Fields are border-box — Done (2026-11-14)
 

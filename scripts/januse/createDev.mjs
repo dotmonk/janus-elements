@@ -77,6 +77,18 @@ const tryRm = (path) => {
   }
 };
 
+const moveAsideOrRemove = (dir, aside) => {
+  try {
+    renameSync(dir, aside);
+  } catch (error) {
+    // Docker overlayfs cannot rename a directory that comes from an image layer.
+    if (error.code !== "EXDEV") {
+      throw error;
+    }
+    rmSync(dir, { recursive: true, force: true });
+  }
+};
+
 function makeSync(cwd, fromRel, toRel) {
   const fromDir = resolve(cwd, fromRel);
   const toDir = resolve(cwd, toRel);
@@ -93,7 +105,7 @@ function makeSync(cwd, fromRel, toRel) {
     tryRm(outgoing);
     cpSync(fromDir, staging, { recursive: true });
     if (existsSync(toDir)) {
-      renameSync(toDir, outgoing);
+      moveAsideOrRemove(toDir, outgoing);
     }
     renameSync(staging, toDir);
     tryRm(outgoing);

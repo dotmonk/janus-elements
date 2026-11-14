@@ -14,6 +14,8 @@ First release (prepared for npm; not published yet).
   given to an `Input`, `Textarea` or other field includes its padding and border;
   `width: 100%` fills its container instead of overflowing it by 22px. Built-in
   components keep their rendered size.
+- **`januse dev --sync`:** Works in Docker. Replacing a target directory that comes
+  from an image layer failed with `EXDEV`, so the target was never updated.
 - **`januse dev`:** Serves and resolves `--watch` / `--sync` paths against the
   **current working directory**, not the package install directory, so the same
   CLI works for this repo’s docs and for consumer apps.
