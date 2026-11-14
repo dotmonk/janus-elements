@@ -227,7 +227,6 @@ function parseAttributes(source) {
     while (index < source.length && /[^\s=]/.test(source[index])) {
       index += 1;
     }
-    const name = source.slice(start, index);
     while (index < source.length && /\s/.test(source[index])) {
       index += 1;
     }
