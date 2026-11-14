@@ -311,8 +311,9 @@ for spreading onto a host element.
 ### `janus-elements/ui/theme`
 
 `theme.tone` / `theme.mix` / `theme.field` / `theme.choiceControl` /
-`ensureThemeTokens` (also re-exported from `janus-elements/ui`). Live demos for
-async/icon helpers: docs `#/helpers`.
+`ensureThemeTokens` (also re-exported from `janus-elements/ui`). `theme.field` is
+`border-box`: a size you give a field includes its padding and border. Live demos
+for async/icon helpers: docs `#/helpers`.
 
 ## Trust and untrusted data
 

@@ -583,7 +583,7 @@ class DateRangePicker extends Component {
             disabled,
           ),
           {
-            minWidth: "16rem",
+            minWidth: "calc(16rem + 22px)",
             color: range.start || range.end
               ? "var(--janus-text)"
               : "var(--janus-text-muted)",

@@ -142,7 +142,7 @@ class CodeEditor extends Component {
         display: "block",
         padding: "0",
         margin: "2px",
-        minHeight,
+        minHeight: `calc(${minHeight} + 2px)`,
         overflow: "hidden",
         fontFamily: monoFont,
         ":focus-within": {

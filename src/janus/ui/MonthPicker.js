@@ -469,7 +469,7 @@ class MonthPicker extends Component {
             disabled,
           ),
           {
-            minWidth: "10rem",
+            minWidth: "calc(10rem + 22px)",
             color: value
               ? "var(--janus-text)"
               : "var(--janus-text-muted)",

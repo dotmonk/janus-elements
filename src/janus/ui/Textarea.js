@@ -18,7 +18,7 @@ class Textarea extends Component {
         style=${util.expand(
           theme.field(color),
           {
-            minHeight: "4.5em",
+            minHeight: "calc(4.5em + 14px)",
             resize: "both",
             verticalAlign: "top",
           },

@@ -6,11 +6,58 @@ _(none)_
 
 ## Planned
 
+### `januse dev --sync` never finishes in the check image
+
+Found 2026-11-14: in `janus-check`, `januse dev --sync "src/janus:docs/lib/janus"` leaves
+`docs/lib/.staging-<pid>` behind and never replaces `docs/lib/janus` (no "Synced" or
+"Sync failed" line), although a plain `cpSync` of the same tree takes 6 ms. The docs-based
+Playwright tests therefore run against whatever `docs/lib` the image copied from the host.
+Not yet investigated; seen in the container only.
+
 ### Select react-select parity (follow-ups)
 
 Fine-grained react-select API aliases only if apps need them.
 
 ## Done
+
+### Fields are border-box — Done (2026-11-14)
+
+**Goal:** A width given to a field includes its padding and border, so `width: 100%` no
+longer overflows its container (reported from gold-janus-example: the chat Textarea
+overflowed its Panel), without changing how built-in components look.
+
+**Steps:**
+- [x] Test first: `field-sizing.spec.js` (Input and Textarea at 240px and 100%); red in all
+      three browsers, 22px too wide
+- [x] `theme.field` sets `box-sizing: border-box`
+- [x] Components that size their own field add its padding and border back (approved
+      2026-11-14): Select, DatePicker, DateTimePicker, WeekPicker, MonthPicker,
+      DateRangePicker, the calendar year input, CodeEditor, RichTextarea, Textarea
+- [x] README and CHANGELOG
+
+**Done when:**
+1. An Input or Textarea given a width is exactly that wide.
+2. Every element on every docs page keeps its size.
+
+**Decisions:** Keep current sizes by adding padding and border to each component's own
+min size (`calc(11rem + 22px)`), rather than accepting smaller components or opting them
+out of border-box. Native `<select>` and `<input type="color">` are already border-box in
+browsers, so the calendar month select, the TimePicker period select and ColorInput need
+nothing.
+
+**Validation:**
+- Size of every element on all 24 docs pages, before (HEAD) and after, in Chromium,
+  Firefox and WebKit, with `docs/lib` synced by `docs/sync-lib.sh`: Chromium 0 changes;
+  Firefox and WebKit only sub-pixel differences on animated icons and spinners. Two
+  baseline runs matched exactly. Before the compensation the same comparison showed Select
+  16px narrower, date pickers 17–22px narrower and Textarea 14px shorter.
+- Calendar year input (popup open) 86px before and after in all three browsers; empty
+  Textarea, CodeEditor, RichTextarea, Select and pickers identical before and after.
+- `./check.sh` exit 0: `tsc` clean, `format --check` 343 files clean, `node --test`
+  147/147, Playwright 657 passed. `januse lint src`: 214 files clean.
+
+**Limitations:** Fields keep their 2px margin, so `width: 100%` sits 2px past the
+container's content edge on the right; `calc(100% - 4px)` fits exactly.
 
 ### HMR reload waits for the server; register rejects name clashes — Done (2026-11-14)
 

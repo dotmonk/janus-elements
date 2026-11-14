@@ -581,7 +581,7 @@ class WeekPicker extends Component {
             disabled,
           ),
           {
-            minWidth: "9rem",
+            minWidth: "calc(9rem + 22px)",
             color: value
               ? "var(--janus-text)"
               : "var(--janus-text-muted)",

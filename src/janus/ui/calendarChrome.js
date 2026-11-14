@@ -157,7 +157,7 @@ const yearStyle = (color) => ({
   ...theme.field(color),
   margin: "0",
   padding: "4px 6px",
-  width: "4.5rem",
+  width: "calc(4.5rem + 14px)",
   textAlign: "center",
 });
 

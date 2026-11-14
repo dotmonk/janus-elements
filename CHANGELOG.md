@@ -10,6 +10,10 @@ First release (prepared for npm; not published yet).
 
 ### Changed
 
+- **Fields:** `theme.field` uses `box-sizing: border-box`, so a width or height
+  given to an `Input`, `Textarea` or other field includes its padding and border;
+  `width: 100%` fills its container instead of overflowing it by 22px. Built-in
+  components keep their rendered size.
 - **`januse dev`:** Serves and resolves `--watch` / `--sync` paths against the
   **current working directory**, not the package install directory, so the same
   CLI works for this repo’s docs and for consumer apps.

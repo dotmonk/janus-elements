@@ -152,7 +152,7 @@ const multiControlStyle = (color) => util.expand(
     alignItems: "center",
     gap: "4px",
     margin: "2px",
-    minWidth: "12ch",
+    minWidth: "calc(12ch + 22px)",
     maxWidth: "100%",
     cursor: "text",
     paddingTop: "4px",
@@ -218,7 +218,7 @@ const searchControlStyle = (color) => util.expand(
     alignItems: "center",
     gap: "6px",
     margin: "2px",
-    minWidth: "12ch",
+    minWidth: "calc(12ch + 16px)",
     cursor: "text",
     paddingTop: "4px",
     paddingBottom: "4px",
@@ -232,7 +232,7 @@ const staticControlStyle = (color) => util.expand(
   {
     // Match native <input> default size (~20ch) so this doesn't look
     // shrunk next to searchable Selects.
-    minWidth: "20ch",
+    minWidth: "calc(20ch + 16px)",
     maxWidth: "100%",
     cursor: "pointer",
   },

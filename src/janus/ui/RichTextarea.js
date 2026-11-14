@@ -1670,7 +1670,7 @@ class RichTextarea extends Component {
         flexDirection: "column",
         gap: "6px",
         padding: "6px",
-        minHeight: "10em",
+        minHeight: "calc(10em + 14px)",
         resize: "both",
         overflow: "hidden",
         ":focus-within": {

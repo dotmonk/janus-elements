@@ -149,6 +149,8 @@ const field = (color) => {
     lineHeight: "1.4",
     padding: "6px 10px",
     margin: "2px",
+    // Padding and border count in a field's size; components that size a field add them, e.g. calc(11rem + 22px).
+    boxSizing: "border-box",
     borderRadius: "var(--janus-radius)",
     borderWidth: "1px",
     borderStyle: "solid",

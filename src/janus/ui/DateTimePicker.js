@@ -648,7 +648,7 @@ class DateTimePicker extends Component {
             disabled,
           ),
           {
-            minWidth: "14rem",
+            minWidth: "calc(14rem + 22px)",
             color: value
               ? "var(--janus-text)"
               : "var(--janus-text-muted)",
