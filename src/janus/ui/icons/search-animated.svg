@@ -13,7 +13,6 @@
       .janus-i-search .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-search{0%,100%{transform:translateY(0)}20%{transform:translateY(-2.5px)}}
       .janus-i-search .m{animation:janus-search .65s infinite}
-
   </style>
   <g class="m">
     <circle

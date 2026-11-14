@@ -13,7 +13,6 @@
       .janus-i-envelope .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-envelope{0%,100%{transform:translateY(0)}20%{transform:translateY(-2.8px)}}
       .janus-i-envelope .m{animation:janus-envelope .65s infinite}
-
   </style>
   <g class="m">
     <rect

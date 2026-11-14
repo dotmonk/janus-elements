@@ -13,7 +13,6 @@
       .janus-i-image .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-image{0%,100%{transform:scale(1)}16%{transform:scale(1.2)}}
       .janus-i-image .m{animation:janus-image .65s ease-in-out infinite}
-
   </style>
   <g class="m">
     <rect

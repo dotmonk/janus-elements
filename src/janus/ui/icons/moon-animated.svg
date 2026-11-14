@@ -13,7 +13,6 @@
       .janus-i-moon .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-moon{0%,100%{transform:rotate(0deg) translateY(0)}25%{transform:rotate(-20deg) translateY(-2px)}55%{transform:rotate(12deg) translateY(-1px)}80%{transform:rotate(-4deg) translateY(0)}}
       .janus-i-moon .m{transform-origin:12px 12px;transform-box:view-box;animation:janus-moon 1.2s ease-in-out infinite}
-
   </style>
   <g class="m">
     <path

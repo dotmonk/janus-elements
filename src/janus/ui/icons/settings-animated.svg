@@ -13,7 +13,6 @@
       .janus-i-settings .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-settings{to{transform:rotate(360deg)}}
       .janus-i-settings .m{transform-box:fill-box;transform-origin:center;animation:janus-settings 4s linear infinite}
-
   </style>
   <path
     class="m"

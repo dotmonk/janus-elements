@@ -13,7 +13,6 @@
       .janus-i-phone .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-phone{0%,100%{transform:rotate(0deg)}20%{transform:rotate(14deg)}40%{transform:rotate(-12deg)}60%{transform:rotate(8deg)}80%{transform:rotate(-4deg)}}
       .janus-i-phone .m{transform-origin:12px 12px;transform-box:view-box;animation:janus-phone .7s ease-in-out infinite}
-
   </style>
   <g class="m">
     <path

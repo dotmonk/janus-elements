@@ -34,7 +34,6 @@
       .janus-i-markdown .arrow {
       animation: janus-md-arrow 0.85s ease-in-out infinite;
       }
-
   </style>
   <rect
     class="frame"

@@ -13,7 +13,6 @@
       .janus-i-calendar .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-calendar{0%,100%{transform:translateY(0)}20%{transform:translateY(-2.5px)}45%{transform:translateY(0)}65%{transform:translateY(-1.2px)}}
       .janus-i-calendar .m{animation:janus-calendar .7s ease-in-out infinite}
-
   </style>
   <g class="m">
     <rect

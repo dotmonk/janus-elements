@@ -13,7 +13,6 @@
       .janus-i-eye-off .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-eye-off{0%,100%{transform:scale(1);opacity:1}40%{transform:scale(.88);opacity:.35}70%{transform:scale(1.08);opacity:1}}
       .janus-i-eye-off .m{animation:janus-eye-off .75s ease-in-out infinite}
-
   </style>
   <g class="m">
     <path d="M3 3l18 18" />

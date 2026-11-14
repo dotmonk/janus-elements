@@ -13,7 +13,6 @@
       .janus-i-lock .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-lock{0%,100%{transform:rotate(0deg)}15%{transform:rotate(-10deg)}35%{transform:rotate(8deg)}55%{transform:rotate(-4deg)}}
       .janus-i-lock .m{transform-origin:12px 14px;transform-box:view-box;animation:janus-lock .7s infinite}
-
   </style>
   <g class="m">
     <rect

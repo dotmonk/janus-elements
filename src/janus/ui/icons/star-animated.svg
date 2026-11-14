@@ -13,7 +13,6 @@
       .janus-i-star .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-star{0%,100%{transform:scale(1)}16%{transform:scale(1.24)}}
       .janus-i-star .m{animation:janus-star .65s infinite}
-
   </style>
   <g class="m">
     <path

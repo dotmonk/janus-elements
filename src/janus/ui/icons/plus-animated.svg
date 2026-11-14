@@ -13,7 +13,6 @@
       .janus-i-plus .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-plus{0%,100%{transform:scale(1)}16%{transform:scale(1.28)}}
       .janus-i-plus .m{animation:janus-plus .6s infinite}
-
   </style>
   <g class="m">
     <path d="M12 5.5v13" />

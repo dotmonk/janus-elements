@@ -12,6 +12,32 @@ Fine-grained react-select API aliases only if apps need them.
 
 ## Done
 
+### `januse format` idempotent on script/style bodies — Done (2026-11-14)
+
+**Goal:** One `januse format` pass produces output that a second pass leaves unchanged,
+including HTML with `<script>`/`<style>` bodies (found formatting gold-janus-example's
+`index.html`, whose import map also lost its JSON nesting).
+
+**Cause:** preserved bodies were stripped of only one leading and one trailing newline,
+so the indentation line before the closing tag became a blank line, and an empty
+`<script src>` gained one on the second pass. Every body line was also `trimStart`ed to a
+single indent.
+
+**Steps:**
+- [x] Test first: an import map plus an empty `<script src>`, exact output and a second
+      pass; red on both the flattening and the blank line
+- [x] Preserved bodies drop whitespace-only edge lines and their common indent, keeping
+      relative nesting, at the existing depth (two levels below the tag)
+- [x] Reformat the repo once: 50 files, 52 blank lines removed, no other change
+
+**Validation:** gold-janus-example's `index.html` formatted twice: second pass identical,
+JSON nesting kept. Reformatting a copy of `docs` and `src` changed only blank lines (0
+non-blank lines differ). `./check.sh` exit 0: `tsc` clean, `format --check` 344 files
+clean, `node --test` 149/149, Playwright 657 passed. `januse lint src` clean.
+
+**Limitations:** bodies keep the existing two-level indent below their tag. Content of
+`<pre>`/`<textarea>` is still re-indented, which changes its whitespace as before.
+
 ### `januse dev --sync` works in Docker — Done (2026-11-14)
 
 **Goal:** `--sync` replaces its target inside the `janus-check` image, so the docs-based

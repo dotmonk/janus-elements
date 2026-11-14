@@ -13,7 +13,6 @@
       .janus-i-info .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-info{0%,100%{transform:scale(1)}16%{transform:scale(1.22)}}
       .janus-i-info .m{animation:janus-info .65s ease-in-out infinite}
-
   </style>
   <g class="m">
     <circle

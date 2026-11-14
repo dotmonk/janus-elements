@@ -13,7 +13,6 @@
       .janus-i-home .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-home{0%,100%{transform:scale(1)}18%{transform:scale(1.18)}}
       .janus-i-home .m{animation:janus-home .65s infinite}
-
   </style>
   <g class="m">
     <path d="M4.5 10.5L12 4.5l7.5 6" />

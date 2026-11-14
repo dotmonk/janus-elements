@@ -15,7 +15,6 @@
       .janus-i-share .m{transform-box:fill-box;transform-origin:center}
       .janus-i-share .m1{animation:janus-share .65s infinite}
       .janus-i-share .m2{animation:janus-share .65s .12s infinite}
-
   </style>
   <circle
     class="m m1"

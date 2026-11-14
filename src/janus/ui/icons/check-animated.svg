@@ -13,7 +13,6 @@
       .janus-i-check .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-check{0%{stroke-dashoffset:24}35%,75%{stroke-dashoffset:0}100%{stroke-dashoffset:24}}
       .janus-i-check .m{stroke-dasharray:24;animation:janus-check .85s infinite}
-
   </style>
   <path
     class="m"

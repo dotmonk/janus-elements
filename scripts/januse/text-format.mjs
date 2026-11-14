@@ -43,14 +43,8 @@ export function formatMarkup(source, { svg = false } = {}) {
       if (token.type === "close" && PRESERVE_TAGS.has(token.name)) {
         preserveDepth -= 1;
         if (preserveDepth === 0) {
-          const body = preserveBuf.replace(/^\n/, "").replace(/\n$/, "");
-          if (body.length > 0) {
-            // Trim per-line indent then re-apply a stable depth so reformat is
-            // idempotent (raw preserve buffers otherwise accumulate padding).
-            for (const line of body.split("\n")) {
-              const trimmed = line.trimStart();
-              lines.push(trimmed.length ? `${indent()}${INDENT}${trimmed}` : "");
-            }
+          for (const line of reindentPreservedBody(preserveBuf, `${indent()}${INDENT}`)) {
+            lines.push(line);
           }
           depth = Math.max(0, depth - 1);
           lines.push(`${indent()}</${token.name}>`);
@@ -117,6 +111,21 @@ export function formatMarkup(source, { svg = false } = {}) {
 }
 
 const INDENT = "  ";
+
+/** Drops blank edge lines and the common indent, keeping relative nesting, then indents to `base`. */
+function reindentPreservedBody(raw, base) {
+  const bodyLines = raw.split("\n");
+  while (bodyLines.length > 0 && !bodyLines[0].trim()) {
+    bodyLines.shift();
+  }
+  while (bodyLines.length > 0 && !bodyLines[bodyLines.length - 1].trim()) {
+    bodyLines.pop();
+  }
+  const commonIndent = Math.min(
+    ...bodyLines.filter((line) => line.trim()).map((line) => line.length - line.trimStart().length),
+  );
+  return bodyLines.map((line) => line.trim() ? `${base}${line.slice(commonIndent)}` : "");
+}
 
 function formatAttributes(attrs, depth) {
   if (attrs.length === 0) {

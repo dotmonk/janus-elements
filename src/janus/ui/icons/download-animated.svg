@@ -13,7 +13,6 @@
       .janus-i-download .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-download{0%,100%{transform:translateY(0)}40%{transform:translateY(3px)}70%{transform:translateY(1px)}}
       .janus-i-download .m{animation:janus-download .65s ease-in-out infinite}
-
   </style>
   <g class="m">
     <path d="M12 4.5v10" />

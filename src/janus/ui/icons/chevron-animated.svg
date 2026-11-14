@@ -13,7 +13,6 @@
       .janus-i-chevron .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-chevron{0%,100%{transform:translateY(0)}22%{transform:translateY(3.5px)}}
       .janus-i-chevron .m{animation:janus-chevron .6s infinite}
-
   </style>
   <path
     class="m"

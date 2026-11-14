@@ -13,7 +13,6 @@
       @keyframes janus-clock{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
       .janus-i-clock .minute,.janus-i-clock .hour{transform-origin:12px 12px;transform-box:view-box;animation:janus-clock 1.4s linear infinite}
       .janus-i-clock .hour{animation-duration:16.8s}
-
   </style>
   <circle
     cx="12"

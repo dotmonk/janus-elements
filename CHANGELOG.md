@@ -10,6 +10,11 @@ First release (prepared for npm; not published yet).
 
 ### Changed
 
+- **`januse format` (HTML/SVG):** Idempotent on `<script>`/`<style>`/`<pre>`/`<textarea>`/`<code>`
+  bodies. The first pass left a blank line that a second pass then changed, and every
+  line was flattened to one indent; bodies now drop blank edge lines and keep their
+  relative nesting (e.g. an import map's JSON). Reformatting the repo removed 52 such
+  blank lines in 45 SVGs and 5 HTML files.
 - **Fields:** `theme.field` uses `box-sizing: border-box`, so a width or height
   given to an `Input`, `Textarea` or other field includes its padding and border;
   `width: 100%` fills its container instead of overflowing it by 22px. Built-in

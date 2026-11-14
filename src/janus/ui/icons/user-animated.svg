@@ -13,7 +13,6 @@
       .janus-i-user .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-user{0%,100%{transform:translateY(0)}20%{transform:translateY(-1.8px)}}
       .janus-i-user .m{transform-box:fill-box;transform-origin:center;animation:janus-user .65s infinite}
-
   </style>
   <circle
     class="m"

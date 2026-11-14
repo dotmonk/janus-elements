@@ -1167,6 +1167,44 @@ test(
 );
 
 test(
+  "formatMarkup keeps nesting in script bodies and is idempotent on them",
+  () => {
+    const once = formatMarkup(`<head>
+    <script type="importmap">
+      {
+        "imports": {
+          "a": "./a.js"
+        }
+      }
+    </script>
+    <script type="module" src="./index.js"></script>
+</head>`);
+    assert.equal(
+      once,
+      `<head>
+  <script type="importmap">
+      {
+        "imports": {
+          "a": "./a.js"
+        }
+      }
+  </script>
+  <script
+    type="module"
+    src="./index.js"
+  >
+  </script>
+</head>
+`,
+    );
+    assert.equal(
+      formatMarkup(once),
+      once,
+    );
+  },
+);
+
+test(
   "formatMarkup preserves svg self-closing shape",
   () => {
     const once = formatMarkup(

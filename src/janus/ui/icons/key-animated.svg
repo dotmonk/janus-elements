@@ -13,7 +13,6 @@
       .janus-i-key .m{transform-box:fill-box;transform-origin:center}
       @keyframes janus-key{0%,100%{transform:rotate(0deg)}15%{transform:rotate(-12deg)}35%{transform:rotate(10deg)}55%{transform:rotate(-5deg)}}
       .janus-i-key .m{transform-origin:8.5px 12px;transform-box:view-box;animation:janus-key .7s ease-in-out infinite}
-
   </style>
   <g class="m">
     <circle
