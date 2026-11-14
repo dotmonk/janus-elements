@@ -15,7 +15,7 @@ const sideEffects = new Set(manifest.extraSideEffects || []);
 
 for (const [subpath, entry] of Object.entries(manifest.exports)) {
   exports[subpath] = {
-    types: entry.types,
+    ...(entry.types ? { types: entry.types } : {}),
     import: entry.file,
     default: entry.file,
   };

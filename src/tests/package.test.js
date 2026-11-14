@@ -41,7 +41,11 @@ const expectedExports = () => {
     entry,
   ] of Object.entries(manifest.exports)) {
     exports[subpath] = {
-      types: entry.types,
+      ...entry.types
+        ? {
+            types: entry.types,
+          }
+        : {},
       import: entry.file,
       default: entry.file,
     };
@@ -166,7 +170,7 @@ test(
     );
     assert.equal(
       Object.keys(packageJson.exports).length,
-      94,
+      95,
     );
     assert.deepEqual(
       packageJson.exports["./ui/latestAsync"],

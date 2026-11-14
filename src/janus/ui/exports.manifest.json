@@ -469,6 +469,10 @@
       "file": "./src/janus/ui/Router.js",
       "types": "./src/janus/ui/router.d.ts",
       "sideEffect": true
+    },
+    "./januse": {
+      "file": "./scripts/januse/createDev.mjs",
+      "sideEffect": false
     }
   },
   "extraSideEffects": [

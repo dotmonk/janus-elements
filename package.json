@@ -482,6 +482,10 @@
       "types": "./src/janus/ui/router.d.ts",
       "import": "./src/janus/ui/Router.js",
       "default": "./src/janus/ui/Router.js"
+    },
+    "./januse": {
+      "import": "./scripts/januse/createDev.mjs",
+      "default": "./scripts/januse/createDev.mjs"
     }
   },
   "bin": {
