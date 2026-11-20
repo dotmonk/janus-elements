@@ -99,6 +99,20 @@ class DocsBasics extends Component {
           <li>
             <code>onClick=\${fn}</code>
             attaches a listener; event attributes accept only functions. On a component, the handler is attached to the component element and fires via bubbling.
+            <code>@click=\${fn}</code>
+            is not Janus syntax and throws.
+          </li>
+          <li>
+            <code>null</code>
+            ,
+            <code>undefined</code>
+            ,
+            <code>false</code>
+            and
+            <code>true</code>
+            render nothing, so
+            <code>${"${error ? html`…` : null}"}</code>
+            omits the branch.
           </li>
           <li>
             Give list items a

@@ -129,6 +129,7 @@ day-to-day work:
 | `januse lint [paths…]` | Unused bindings (unless `_`), no-undef, prefer `===`, duplicate keys on `.js`/`.mjs`/`.ts`. Default path `src`. |
 | `januse format [paths…]` | Rewrite `.js`/`.mjs`/`.ts`/`.json`/`.svg`/`.html` (including `html\`…\`` templates). Skips `*.compact.js` and `*.spaced.js`. |
 | `januse format --check` | Same as format but write nothing; exit `-1` (shell `255`) if a file would change. |
+| `--exclude <pattern>` | On `lint` and `format`: skip files and directories matching the pattern, relative to the current directory. `*` and `?` stay within one path segment, `**` spans any depth. Repeatable, e.g. `januse lint --exclude frontend/lib --exclude "**/*.min.js" frontend`. `node_modules` and `.git` are always skipped. |
 | `januse dev` | Serve the **current working directory** at `127.0.0.1:8000` (`PORT` overrides), `--watch` paths, optional `--sync from:to`, HMR over `/__januse_hmr`. When the server goes away, the page reloads once it answers again (retrying with backoff up to 5 s). From this repo, `npm run dev` still opens `/docs/`; from an app, point `--watch` / `--sync` at that app’s paths. |
 
 `./check.sh` builds the `janus-check` Docker image (retries flaky BuildKit
@@ -202,7 +203,7 @@ component, or import individual modules such as `janus-elements/ui/button` and
 
 | Component | Usage |
 |---|---|
-| Button | `<Button color active disabled href onClick headIcon tailIcon>Text</Button>` (`headIcon` / `tailIcon` take Icon classes; animate on hover) |
+| Button | `<Button color active disabled href type onClick headIcon tailIcon>Text</Button>` (`headIcon` / `tailIcon` take Icon classes; animate on hover; `type` defaults to `button`, `submit` / `reset` work in a native form) |
 | Input, Textarea | `<Input color value disabled headIcon tailIcon />` (`headIcon` / `tailIcon` take Icon classes, e.g. `SearchIcon`; `null` hides a slot); `<Textarea color>Text</Textarea>` |
 | CodeEditor | `<CodeEditor value language filename readOnly onChange onLanguageChange />`; `onChange` / `onLanguageChange` get `string`s; omit `language` to detect from `filename` / content. Highlight helpers: `janus-elements/ui/highlight` (see [Helpers](#helpers)) |
 | RichTextarea | `<RichTextarea value placeholder readOnly onChange />`; WYSIWYG whose `value` / `onChange` are Markdown strings (bold/italic/strike, a Heading menu for H1–H6, lists, tasks, quotes, highlighted fenced code with a language menu, horizontal rules, tables (in a table the ▦ button becomes a menu for rows, columns and alignment), links, images). The formatting toolbar stays fixed while the body scrolls; toolbar menus use `position: fixed` so they are not clipped by the field shell. Tab/Shift+Tab and Enter move between table cells. Toolbar icons animate on hover. The Link button unlinks when the caret is in a link; Ctrl/Cmd+B and I format. Own undo/redo (Ctrl/Cmd+Z, Ctrl/Cmd+Shift+Z, Ctrl+Y) covering typing and toolbar commands; List buttons set the current item's kind and return it to a paragraph when pressed again; List Enter/Backspace, Tab/Shift+Tab indent and outdent; toolbar `aria-pressed` follows the caret; Markdown icon toggles a `CodeEditor` source mode. Deep import `janus-elements/ui/rich-textarea` |
@@ -240,6 +241,43 @@ close, and honour `escapable` (default true: Escape and backdrop dismiss;
 `false` disables both). An optional `title` labels the dialog. Opening a
 modal while another is open stacks a new layer; Escape and `closeModal` pop
 the top layer only.
+
+### Forms and component elements
+
+A component element such as `<janus-input>` has `display: contents`: it has no
+box, but it is an ordinary element in the DOM, and the native control it
+renders sits inside it.
+
+- Events behave as in plain HTML. `onInput`, `onChange` or `onClick` on a
+  component attaches to the component element and receives the event by
+  bubbling, with `event.target` the native control inside.
+- Native forms work. `<Button type="submit">` submits the surrounding `<form>`
+  and `type="reset"` resets it. Call `event.preventDefault()` in `onSubmit` to
+  stay on the page; otherwise the browser loads the form's action, which drops
+  a hash route.
+- Input, Textarea, NumberInput, RangeInput, ColorInput, FileInput, Checkbox
+  and Switch pass `name`, `form`, `required` and `autocomplete` to their native
+  control, so `new FormData(form)` includes them and `required` is validated.
+  RadioGroup takes `name` too.
+- Select, the date and time pickers, CodeEditor and RichTextarea have no native
+  control and are not part of `FormData`. Keep their `onChange` value in state.
+- `value` is what the template sets. Typing changes the field without a
+  re-render, and a re-render with an unchanged `value` keeps what was typed, so
+  state reflects the field only if `onInput` or `onChange` writes it back.
+
+```js
+html`
+  <form
+    onSubmit=${(event) => {
+      event.preventDefault();
+      signIn(new FormData(event.target).get("user"));
+    }}
+  >
+    <Input name="user" required />
+    <Button type="submit">Sign in</Button>
+  </form>
+`
+```
 
 ## Helpers
 
@@ -306,7 +344,8 @@ RichTextarea fenced code. Deep import:
 
 Style/prop helpers for kit authors: `util.expand(...styleObjects)` merges style
 objects; `util.forwardedProps(props)` copies props except `style` and functions
-for spreading onto a host element.
+for spreading onto a host element; `util.formAttributes(props)` picks `name`,
+`form`, `required` and `autocomplete` for spreading onto a native form control.
 
 ### `janus-elements/ui/theme`
 
@@ -415,12 +454,18 @@ the defaults are checked in both themes by `src/tests/theme.spec.js`.
   themselves (`<janus-button>` and so on) use `display: contents` and have no
   box: scroll, measure or observe the component's root element, not the
   component element.
+- `${value}` in content renders a string or number as text and nodes as they
+  are. `null`, `undefined`, `false` and `true` render nothing, also inside
+  arrays, so `${error ? html\`<p>${error}</p>\` : null}` and
+  `${loggedIn && html\`…\`}` work; `0` renders `0`.
 - `onClick=${fn}` (any `on` prop with a function) attaches an event listener.
   Event-handler attributes accept only functions: a string, including a static
   `onclick="..."`, throws. `undefined`, `null` and `false` attach nothing.
+  `@click=${fn}` is not Janus syntax and throws, naming `onClick`.
 - On a component, `onClick=${fn}` and the like attach to the component's own
   element, and events from inside reach it by bubbling. Components should not
-  pass those handlers on to inner elements, or they run twice.
+  pass those handlers on to inner elements, or they run twice. See
+  [Forms and component elements](#forms-and-component-elements).
 - `<` followed by a letter, `/` or `!` starts a tag; anything else is text. To
   show text like `a<b`, pass it as a variable: `${"a<b"}`.
 - Inside a double-quoted attribute value, `\"` is a literal quote. In

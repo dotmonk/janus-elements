@@ -3,6 +3,7 @@ import Component, {
 } from "../index.js";
 
 import theme from "./theme.js";
+import util from "./util.js";
 
 const parseNumber = (raw) => {
   if (
@@ -33,7 +34,6 @@ class NumberInput extends Component {
       disabled,
       color,
       value,
-      name,
       min,
       max,
       step,
@@ -63,9 +63,6 @@ class NumberInput extends Component {
     ) {
       bound.step = String(step);
     }
-    if (name) {
-      bound.name = name;
-    }
     if (placeholder) {
       bound.placeholder = placeholder;
     }
@@ -81,6 +78,7 @@ class NumberInput extends Component {
           : {}}
         ${valueProps}
         ${bound}
+        ${util.formAttributes(this.props)}
         onInput=${(event) => this.emitChange(event)}
         onChange=${(event) => event.stopPropagation()}
       />

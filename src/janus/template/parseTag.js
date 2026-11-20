@@ -42,7 +42,7 @@ export default (input) => {
       propModifiers.push(input[index]);
     } else if (
       typeof input[index] === "string" &&
-      input[index].match(/[a-zA-Z0-9-]{1}/)
+      input[index].match(/[a-zA-Z0-9@-]{1}/)
     ) {
       const parsePropResult = parseProp(input.slice(index));
       Object.assign(

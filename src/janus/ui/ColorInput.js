@@ -43,7 +43,6 @@ class ColorInput extends Component {
       disabled,
       color,
       value,
-      name,
     } = this.props || {};
     const hex = normalizeHex(value);
 
@@ -67,11 +66,7 @@ class ColorInput extends Component {
             }
           : {}}
         value=${hex}
-        ${name
-          ? {
-              name,
-            }
-          : {}}
+        ${util.formAttributes(this.props)}
         onInput=${(event) => this.emitChange(event)}
         onChange=${(event) => event.stopPropagation()}
       />

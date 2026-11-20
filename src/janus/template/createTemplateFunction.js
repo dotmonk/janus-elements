@@ -512,6 +512,11 @@ export default (contents) => {
             const value = modifiedProps[propName];
             const type = typeof value;
 
+            if (propName.startsWith("@")) {
+              const eventName = propName.slice(1);
+              throw Error(`"${propName}" is not Janus syntax; use on${eventName.charAt(0).toUpperCase()}${eventName.slice(1)}=\${handler}`);
+            }
+
             if (propName === "key") {
               if (
                 value !== undefined &&
@@ -621,13 +626,19 @@ export default (contents) => {
         const valueType = typeof value;
         if (attributeTypes.includes(valueType)) {
           return document.createTextNode(String(value));
-        } else if (valueType === "object") {
+        } else if (
+          valueType === "object" &&
+          value !== null
+        ) {
           return value;
-          //ignore undefined
-        } else if (valueType !== "undefined") {
-          throw Error(`Invalid type found in variable. Invalid type: "${valueType}"`);
+        } else if (
+          value === null ||
+          valueType === "undefined" ||
+          valueType === "boolean"
+        ) {
+          return document.createTextNode("");
         }
-        return document.createTextNode("");
+        throw Error(`Invalid type found in variable. Invalid type: "${valueType}"`);
       }
       throw Error(`Invalid type found in template creation function. Invalid type: "${type}"`);
     };

@@ -42,17 +42,97 @@ const SKIPPED_REPO_PATHS = new Set(
   ],
 );
 
-const isSkippedDirectory = (absolutePath, name) => SKIPPED_DIRECTORY_NAMES.has(name) || SKIPPED_REPO_PATHS.has(relative(
+const projectPath = (absolutePath) => relative(
   projectRoot(),
   absolutePath,
-).split("\\").join("/"));
+).split("\\").join("/");
+
+const isSkippedDirectory = (absolutePath, name) => SKIPPED_DIRECTORY_NAMES.has(name) || SKIPPED_REPO_PATHS.has(projectPath(absolutePath));
+
+export class UsageError extends Error {}
+
+export function splitExcludes(argv) {
+  const rest = [];
+  const excludes = [];
+  for (let index = 0; index < argv.length; index += 1) {
+    if (argv[index] !== "--exclude") {
+      rest.push(argv[index]);
+      continue;
+    }
+    const pattern = argv[index + 1];
+    if (
+      pattern === undefined ||
+      pattern.startsWith("-")
+    ) {
+      throw new UsageError("--exclude needs a pattern");
+    }
+    excludes.push(pattern);
+    index += 1;
+  }
+  return {
+    rest,
+    excludes,
+  };
+}
+
+const globToRegExp = (pattern) => {
+  const normalized = (isAbsolute(pattern)
+    ? projectPath(pattern)
+    : pattern).split("\\").join("/").replace(
+    /^\.\//,
+    "",
+  ).replace(
+    /\/+$/,
+    "",
+  );
+  if (normalized === "") {
+    throw new UsageError(`--exclude "${pattern}" would exclude the whole directory`);
+  }
+  let source = "";
+  for (let index = 0; index < normalized.length; index += 1) {
+    const character = normalized[index];
+    if (normalized.startsWith(
+      "**/",
+      index,
+    )) {
+      source += "(?:.*/)?";
+      index += 2;
+    } else if (normalized.startsWith(
+      "**",
+      index,
+    )) {
+      source += ".*";
+      index += 1;
+    } else if (character === "*") {
+      source += "[^/]*";
+    } else if (character === "?") {
+      source += "[^/]";
+    } else {
+      source += character.replace(
+        /[.+^${}()|[\]\\]/,
+        "\\$&",
+      );
+    }
+  }
+  return new RegExp(`^${source}$`);
+};
 
 // Relative targets resolve against cwd (works for the published `januse` bin).
-export function collectFiles(targets, extensions) {
+export function collectFiles(targets, extensions, excludes = []) {
   const wanted = new Set(extensions);
   const found = new Set();
+  const excludePatterns = excludes.map(globToRegExp);
+  const isExcluded = (absolutePath) => {
+    const path = projectPath(absolutePath);
+    return excludePatterns.some(
+      (pattern) => pattern.test(path),
+    );
+  };
 
   const visit = (absolutePath, isRoot) => {
+    if (isExcluded(absolutePath)) {
+      return;
+    }
     const stats = statSync(absolutePath);
     if (stats.isDirectory()) {
       const name = absolutePath.split(/[\\/]/).pop();

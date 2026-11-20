@@ -55,6 +55,7 @@ class Switch extends Component {
                 disabled: "",
               }
             : {}}
+          ${util.formAttributes(this.props)}
         />
         <span>${this.childElements}</span>
       </label>

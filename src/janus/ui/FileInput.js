@@ -3,6 +3,7 @@ import Component, {
 } from "../index.js";
 
 import theme from "./theme.js";
+import util from "./util.js";
 
 class FileInput extends Component {
 
@@ -19,14 +20,10 @@ class FileInput extends Component {
     const {
       disabled,
       color,
-      name,
       accept,
       multiple = true,
     } = this.props || {};
     const bound = {};
-    if (name) {
-      bound.name = name;
-    }
     if (accept) {
       bound.accept = accept;
     }
@@ -46,6 +43,7 @@ class FileInput extends Component {
             }
           : {}}
         ${bound}
+        ${util.formAttributes(this.props)}
         onChange=${(event) => this.emitChange(event)}
       />
     `;

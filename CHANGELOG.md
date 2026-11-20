@@ -10,6 +10,17 @@ First release (prepared for npm; not published yet).
 
 ### Changed
 
+- **Templates:** `null`, `false` and `true` in content render nothing, like
+  `undefined`, also inside arrays (#2). `${null}` crashed and booleans threw
+  "Invalid type".
+- **Templates:** a prop named `@event` (`@submit=${fn}`) throws an error naming
+  `onSubmit`; it used to be dropped silently, so the handler never ran (#1).
+- **`januse lint` / `format`:** `--exclude <pattern>` (repeatable; `*`, `**`, `?`)
+  skips generated or vendored files and directories under a target (#4).
+- **Fields:** Input, Textarea, NumberInput, RangeInput, ColorInput, FileInput,
+  Checkbox and Switch pass `name`, `form`, `required` and `autocomplete` to their
+  native control, so they take part in native forms and `FormData` (#3). Input,
+  Textarea, Checkbox and Switch ignored `name` before.
 - **`januse format` (HTML/SVG):** Idempotent on `<script>`/`<style>`/`<pre>`/`<textarea>`/`<code>`
   bodies. The first pass left a blank line that a second pass then changed, and every
   line was flattened to one indent; bodies now drop blank edge lines and keep their

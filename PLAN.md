@@ -12,6 +12,91 @@ Fine-grained react-select API aliases only if apps need them.
 
 ## Done
 
+### GitHub issues #1–#4 — Done (2026-11-20)
+
+**Goal:** Resolve the four open GitHub issues from a consumer app: form submit with
+`Button` (#1), `null`/`false` template slots (#2), form participation of fields behind
+`display: contents` hosts (#3), and `januse lint|format --exclude` (#4).
+
+**Steps:**
+- [x] Acceptance tests first, red where behaviour changes
+- [x] #1 Regression test: `<Button type="submit|reset">` submits/resets a native form;
+      an `@`-prefixed prop (`@submit=${fn}`) throws, naming the `on…` form; README form pattern
+- [x] #2 `null`, `undefined`, `false`, `true` render nothing, as a slot and inside arrays;
+      `0` still renders; README
+- [x] #3 `name`, `form`, `required`, `autocomplete` reach the native control of Input,
+      Textarea, NumberInput, RangeInput, ColorInput, FileInput, Checkbox, Switch; README
+      section on the host model, events and forms
+- [x] #4 Repeatable `--exclude <pattern>` on `januse lint` and `format` (`*`, `**`, `?`,
+      relative to cwd, built-in matcher); README and usage text
+- [x] CHANGELOG
+
+**Done when:**
+1. A `<form onSubmit>` containing `<Button type="submit">` and `<Input name="user">` fires
+   on click and its `FormData` holds `user`; `type="reset"` resets it.
+2. `<form @submit=${fn}>` and `<Button @click=${fn}>` throw an error that names `onSubmit`
+   / `onClick`.
+3. `${null}`, `${false}`, `${true}` and `[a, null, false]` render without error and
+   without text; `${0}` renders `0`.
+4. Each of the eight fields given `name`, `form`, `required`, `autocomplete` has them on
+   its native control, and a native form's `FormData` includes its value.
+5. `januse lint|format --exclude "frontend/lib" --exclude "**/*.min.js" frontend` skips
+   those files and directories; without `--exclude` behaviour is unchanged.
+
+**Decisions (approved 2026-11-20):**
+- #1 does not reproduce at HEAD: `Button` has forwarded `type` since it was added; probed in
+  all three browsers. Likely cause in the consumer app: `@submit` is not Janus syntax and
+  was silently dropped. Only `@`-prefixed prop names throw (on any element; an `@` attribute
+  is invalid HTML anyway); other function props on HTML elements keep being dropped, as
+  `src/tests/index.js` pins.
+- #2 follows React: booleans and nullish values are holes.
+- #3 forwards an explicit attribute list rather than all props. Select, the pickers,
+  CodeEditor and RichTextarea stay `onChange`-only (documented).
+- #4 `--exclude` only, no ignore file; no glob dependency.
+
+**Cause found for #1:** `parseTag` skipped any character outside `[a-zA-Z0-9-]` before a
+prop name, so `@submit=${fn}` became a prop `submit` holding a function, which HTML
+elements drop. `@` now starts a prop name, so the new check sees it.
+
+**Validation:** `./check.sh` (unit + browser in Docker).
+- Baseline: exit 0, `tsc` clean, `format --check` 344 files clean, `node --test` all pass,
+  Playwright 657 passed (5.7 min, with a probe container running alongside).
+- Red first: `forms.spec.js` failed on every field attribute and on `FormData` (the reset
+  test passed: existing behaviour, kept as a regression pin); the `test.html` harness
+  failed on the new slot and `@` cases; `januse-exclude.test.js` failed 4/4 (exclude
+  values were walked as targets).
+- After #1–#3: Playwright 684 passed, 3 failed, all the harness page on the `@` cases,
+  which led to the `parseTag` cause above; after the fix the harness, forms and render
+  specs passed 69/69.
+- Final `./check.sh` exit 0: `tsc` clean, `format --check` 346 files clean, `node --test`
+  154/154, Playwright 687 passed (5.6 min). `januse lint src scripts bin`: 228 files clean.
+
+**Hardening findings:**
+- Fixed: `--exclude ""` or `./` matched the project root, so `januse lint --exclude "" .`
+  silently checked nothing. It is now a usage error (test added).
+- `render(container, null)` now empties the container, and a component may render
+  `null`. Both crashed before.
+- `name=""` used to be skipped by NumberInput, RangeInput, ColorInput and FileInput; it is
+  now set as an empty attribute, which `FormData` ignores just the same.
+- Open, pre-existing: `parseTag` still drops other characters in front of a prop name
+  silently (`:click`, `.value` become `click`, `value`).
+- Open, pre-existing: `InputProps.type` and `CheckboxProps.value` are declared in the
+  `.d.ts` files but ignored; Input is always `type="text"` and a checked Checkbox submits
+  `on`.
+- Open, pre-existing: `januse lint|format` print paths relative to the package install
+  directory, so from a consumer app they start with `../`.
+- Patterns become regular expressions with every literal escaped; a pathological
+  `**/**/**/…` pattern could backtrack slowly on long paths. Local CLI input; accepted.
+
+**Limitations:**
+- Select, the date and time pickers, CodeEditor and RichTextarea do not take part in
+  native forms (documented).
+- `bin/januse.mjs` was already outside `januse format` at HEAD and still is; `bin/` and
+  `scripts/` are not in the format gate.
+- Playwright took 5.6 min alone, above the 5-minute per-batch budget (the 2026-11-14 runs
+  took 1.2 min on unchanged specs). The gate was not split; that is the user's call.
+- GitHub issues are not closed or answered; that needs the user.
+
 ### `januse format` idempotent on script/style bodies — Done (2026-11-14)
 
 **Goal:** One `januse format` pass produces output that a second pass leaves unchanged,

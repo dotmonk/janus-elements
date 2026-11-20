@@ -28,6 +28,7 @@ class Textarea extends Component {
               disabled: "disabled",
             }
           : {}}
+        ${util.formAttributes(this.props)}
       >${this.childElements}</textarea>
     `;
   }

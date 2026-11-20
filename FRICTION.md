@@ -3,6 +3,20 @@
 Where a rule in `AGENTS.md` was skipped, or cost more than it returned. Newest
 first.
 
+## 2026-11-20 — Tests-first vs. the per-batch gate
+
+**Rules:** write the acceptance tests in step 2, before any implementation; run the
+gate after every batch and never continue past a failed one.
+**What happened:** the GitHub issues phase wrote all its acceptance tests up front,
+including a `node:test` file for the last batch (`januse --exclude`). After the first
+two batches `./check.sh` stopped at `node --test` on that deliberately red test, so the
+`&&` chain never reached Playwright. The browser tier for those batches was run
+separately in the same image (`docker run … janus-check npx playwright test`).
+**Cost:** one wasted gate run (~1 min) and a second Docker run; the gate itself could
+not report green until the last batch was done.
+**Status:** open. Options for the user: write each batch's acceptance tests just before
+that batch, or let the gate run every step and report all failures at the end.
+
 ## 2026-10-30 — PLAN.md archive rule not applied
 
 **Rule:** past ten entries under `## Done`, move the oldest to

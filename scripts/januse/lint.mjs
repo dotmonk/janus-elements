@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { extname, relative } from "node:path";
 import { collectLint, parse } from "./js-syntax.mjs";
-import { collectFiles, defaultTargets, repoRoot } from "./walk.mjs";
+import { collectFiles, defaultTargets, repoRoot, splitExcludes } from "./walk.mjs";
 
 const JS_EXTS = new Set([".js", ".mjs", ".ts"]);
 
@@ -177,8 +177,9 @@ function globalsFor(filePath) {
 }
 
 export async function runLint(argv) {
-  const targets = defaultTargets(argv.filter((arg) => !arg.startsWith("-")));
-  const files = collectFiles(targets, [...JS_EXTS]);
+  const { rest, excludes } = splitExcludes(argv);
+  const targets = defaultTargets(rest.filter((arg) => !arg.startsWith("-")));
+  const files = collectFiles(targets, [...JS_EXTS], excludes);
   let findings = 0;
 
   for (const file of files) {

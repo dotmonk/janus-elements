@@ -90,6 +90,7 @@ class Input extends Component {
           type="text"
           style=${theme.field(color)}
           ${disabledAttr}
+          ${util.formAttributes(this.props)}
           value=${value}
           placeholder=${placeholder}
         />
@@ -111,6 +112,7 @@ class Input extends Component {
           type="text"
           style=${fieldInputStyle}
           ${disabledAttr}
+          ${util.formAttributes(this.props)}
           value=${value}
           placeholder=${placeholder}
         />

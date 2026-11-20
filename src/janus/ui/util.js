@@ -58,7 +58,24 @@ const forwardedProps = (props) => Object.fromEntries(Object.entries(props).filte
   ]) => name !== "style" && typeof value !== "function",
 ));
 
+const formAttributeNames = [
+  "name",
+  "form",
+  "required",
+  "autocomplete",
+];
+
+const formAttributes = (props) => Object.fromEntries(formAttributeNames.filter(
+  (name) => props && name in props,
+).map(
+  (name) => [
+    name,
+    props[name],
+  ],
+));
+
 export default {
   expand,
   forwardedProps,
+  formAttributes,
 };

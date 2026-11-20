@@ -8,7 +8,9 @@ import {
 
 const lintSnippet = `npm run lint
 # or: januse lint [paths...]
-# default path: src`;
+# default path: src
+# skip generated or vendored files (lint and format, repeatable):
+januse lint --exclude frontend/lib --exclude "**/*.min.js" frontend`;
 
 const formatSnippet = `npm run format          # rewrite .js/.mjs/.ts/.json/.svg/.html
 npm run check-format     # exit -1 if a rewrite would change a file

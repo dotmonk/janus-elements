@@ -543,8 +543,111 @@ const testHtmlElementPropsAsChildrenSupport = () => {
   container.remove();
 };
 
+const testEmptySlotSupport = () => {
+  title("null, undefined and booleans render nothing");
+  matchTemplate(
+    html`
+      <p>a${null}b${undefined}c${false}d${true}e</p>
+    `,
+    "<p>abcde</p>",
+  );
+  matchTemplate(
+    html`
+      <p>${0}</p>
+    `,
+    "<p>0</p>",
+  );
+  matchTemplate(
+    html`
+      <ul>${[
+          template`<li>a</li>`,
+          null,
+          false,
+          undefined,
+          true,
+          template`<li>b</li>`,
+        ]}</ul>
+    `,
+    "<ul><li>a</li><li>b</li></ul>",
+  );
+
+  class TestEmptyBranch extends Component {
+
+    render() {
+      return template`<div>${this.state.error ? template`<p>${this.state.error}</p>` : null}${this.childElements}</div>`;
+    }
+  }
+
+  Component.register(TestEmptyBranch);
+
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  try {
+    render(
+      container,
+      template`<TestEmptyBranch>${null}${false}<i>child</i></TestEmptyBranch>`,
+    );
+    const element = container.firstChild;
+    element.setState(
+      {
+        error: "failed",
+      },
+    );
+    const withError = element.innerHTML;
+    element.setState(
+      {
+        error: null,
+      },
+    );
+    const expected = "<div><p>failed</p><i>child</i></div> <div><i>child</i></div>";
+    const actual = `${withError} ${element.innerHTML}`;
+    if (actual === expected) {
+      success(expected);
+    } else {
+      error(`${actual} expected ${expected}`);
+    }
+  } catch (e) {
+    error(`Toggling a null branch threw ${String(e)}`);
+  }
+  container.remove();
+};
+
+const testAtPrefixedPropsRejected = () => {
+  title("@-prefixed props throw and name the on… prop");
+  matchTemplateError(
+    html`
+      <form @submit=${() => {}} />
+    `,
+    "onSubmit",
+  );
+  matchTemplateError(
+    html`
+      <p @click="x" />
+    `,
+    "onClick",
+  );
+
+  class TestAtProp extends Component {
+
+    render() {
+      return template`<p />`;
+    }
+  }
+
+  Component.register(TestAtProp);
+
+  matchTemplateError(
+    html`
+      <TestAtProp @click=${() => {}} />
+    `,
+    "onClick",
+  );
+};
+
 (() => {
   testHtmlElementSupport();
+  testEmptySlotSupport();
+  testAtPrefixedPropsRejected();
   testHtmlElementVariablesSupport();
   testHtmlElementEventsSupport();
   testJanusComponentSupport();

@@ -6,6 +6,8 @@ const templateStore = {};
 
 const tagStringsToKey = (strings) => strings.join("\0");
 
+const isEmptyChild = (content) => content === null || content === undefined || typeof content === "boolean";
+
 const flattenChildren = (content) => {
   if (Array.isArray(content)) {
     let children = [];
@@ -14,9 +16,11 @@ const flattenChildren = (content) => {
     );
     return children;
   }
-  return [
-    content,
-  ];
+  return isEmptyChild(content)
+    ? []
+    : [
+        content,
+      ];
 };
 
 const taggedLiteral = (strings, ...values) => {

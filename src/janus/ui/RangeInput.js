@@ -23,7 +23,6 @@ class RangeInput extends Component {
       disabled,
       color,
       value,
-      name,
       min = 0,
       max = 100,
       step = 1,
@@ -56,11 +55,7 @@ class RangeInput extends Component {
         min=${String(min)}
         max=${String(max)}
         step=${String(step)}
-        ${name
-          ? {
-              name,
-            }
-          : {}}
+        ${util.formAttributes(this.props)}
         onInput=${(event) => this.emitChange(event)}
         onChange=${(event) => event.stopPropagation()}
       />

@@ -18,6 +18,7 @@ import {
   collectFiles,
   defaultTargets,
   repoRoot,
+  splitExcludes,
 } from "./walk.mjs";
 
 const FORMAT_EXTS = [
@@ -77,13 +78,18 @@ function formatSource(file, source) {
 }
 
 export async function runFormat(argv) {
-  const check = argv.includes("--check");
-  const targets = defaultTargets(argv.filter(
+  const {
+    rest,
+    excludes,
+  } = splitExcludes(argv);
+  const check = rest.includes("--check");
+  const targets = defaultTargets(rest.filter(
     (arg) => arg !== "--check" && !arg.startsWith("-"),
   ));
   const files = collectFiles(
     targets,
     FORMAT_EXTS,
+    excludes,
   );
   let changed = 0;
   let errors = 0;
